@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>parth amradkar – portfolio</title>
+        <title>parth amradkar</title>
         <style>
             * {
                 margin: 0;
@@ -237,6 +237,14 @@
                 background: #111;
                 border-radius: 6px;
                 color: #666;
+            }
+
+            .WIPtag {
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+                background: #ffcd1a;
+                border-radius: 6px;
+                color: #111;
             }
 
             /* about section */
@@ -495,57 +503,73 @@
             <!-- projects section -->
             <section id="projects" class="section">
                 <div class="container">
-                    <h2>lorem ipsum</h2>
+                    <h2>projects</h2>
                     <div class="projects-grid">
                         <div
                             class="project-card"
-                            onclick="openProject('lorem-1')"
+                            onclick="openProject('ardms')"
                         >
-                            <h3>lorem 1</h3>
-                            <p>lorem ipsum dolor sit amet</p>
+                            <h3>ardms</h3>
+                            <p>
+                                autonomous racing drone motion controller, for
+                                STM32 based boards. features automatic pid
+                                calibration.
+                            </p>
                             <div class="project-tags">
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
+                                <span class="tag">python</span>
+                                <span class="tag">autonomous</span>
                             </div>
                         </div>
 
                         <div
                             class="project-card"
-                            onclick="openProject('lorem-2')"
+                            onclick="openProject('swift')"
                         >
-                            <h3>lorem 2</h3>
-                            <p>consectetur adipiscing elit</p>
+                            <h3>SWIFT</h3>
+                            <p>
+                                Swarm With Intelligent Formation Tracking for
+                                ML-Enhanced Infrared Detection in post-disaster
+                                Search Operations
+                            </p>
                             <div class="project-tags">
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
+                                <span class="WIPtag">in progress</span>
+                                <span class="tag">swarms</span>
+                                <span class="tag">ml</span>
+                                <span class="tag">rescue</span>
+                                <span class="tag">drones</span>
                             </div>
                         </div>
 
                         <div
                             class="project-card"
-                            onclick="openProject('lorem-3')"
+                            onclick="openProject('voxelab')"
                         >
-                            <h3>lorem 3</h3>
-                            <p>sed do eiusmod tempor</p>
+                            <h3>modded voxelab printer</h3>
+                            <p>
+                                extremely fast voxelab printer with 30,000
+                                mm/s^2 acceleration. computed by a cluster of
+                                raspberry pi's
+                            </p>
                             <div class="project-tags">
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
+                                <span class="tag">3d printer</span>
+                                <span class="tag">rpi cluster</span>
+                                <span class="tag">modded</span>
                             </div>
                         </div>
 
-                        <div
-                            class="project-card"
-                            onclick="openProject('lorem-4')"
-                        >
-                            <h3>lorem 4</h3>
-                            <p>incididunt ut labore</p>
+                        <div class="project-card" onclick="openProject('aprd')">
+                            <h3>autonomous payload release drone</h3>
+                            <p>
+                                a drone that can drop rockets or an desired
+                                payload mid-air using <b>ardms</b> as the motion
+                                controller
+                            </p>
                             <div class="project-tags">
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
-                                <span class="tag">tag</span>
+                                <span class="WIPtag">in progress</span>
+                                <span class="tag">rockets</span>
+                                <span class="tag">payload transport</span>
+                                <span class="tag">drones</span>
+                                <span class="tag">autonomous</span>
                             </div>
                         </div>
                     </div>
@@ -562,7 +586,7 @@
                     </p>
                     <p>
                         i love building drones, programming autonomous routines
-                        and small solutions to make my life a bit easier
+                        and making difficult things easier :)
                     </p>
                 </div>
             </section>
@@ -583,11 +607,11 @@
         </div>
 
         <!-- project detail pages -->
-        <div id="lorem-1" class="project-detail">
+        <div id="ardms" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>lorem 1</h1>
-                <div class="project-meta">tag • tag • tag</div>
+                <h1>ardms, autonomous racing drone motion controller</h1>
+                <div class="project-meta">python • autonomous</div>
                 <p>
                     lorem ipsum dolor sit amet, consectetur adipiscing elit. sed
                     do eiusmod tempor incididunt ut labore et dolore magna
@@ -621,7 +645,7 @@
             </div>
         </div>
 
-        <div id="lorem-2" class="project-detail">
+        <div id="swift" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
                 <h1>lorem 2</h1>
@@ -658,7 +682,7 @@
             </div>
         </div>
 
-        <div id="lorem-3" class="project-detail">
+        <div id="voxelab" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
                 <h1>lorem 3</h1>
@@ -695,7 +719,7 @@
             </div>
         </div>
 
-        <div id="lorem-4" class="project-detail">
+        <div id="aprd" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
                 <h1>lorem 4</h1>
