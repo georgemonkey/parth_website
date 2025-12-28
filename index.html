@@ -554,6 +554,32 @@
             .reveal-item:last-child {
                 border-bottom: none;
             }
+            .demo-wrapper {
+                display: flex;
+                flex-direction: column; /* stack image + caption vertically */
+                align-items: center;    /* center horizontally */
+                justify-content: center; /* center vertically if container has height */
+                text-align: center;      /* center text inside caption */
+                width: 100%;
+                margin: 2rem 0;         /* optional spacing above/below */
+            }
+
+            .github-btn {
+                display: inline-block;
+                margin-bottom: 2rem;
+                padding: 0.6rem 1.2rem;
+                border: 1px solid #333;
+                color: #888;
+                text-decoration: none;
+                border-radius: 6px;
+                font-family: inherit;
+                transition: 0.3s;
+            }
+
+            .github-btn:hover {
+                border-color: #fff;
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -691,7 +717,7 @@
                     <div class="project-card reveal-stack open">
                         <div class="reveal-header">
                             <h3>vex competition reveals</h3>
-                            <span class="reveal-icon">eternity</span>
+                            <span class="reveal-icon">original</span>
                         </div>
 
                         <div class="reveal-list">
@@ -717,6 +743,23 @@
 
                         <div class="project-tags">
                             <span class="revealtag">film/photography</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="project-card"
+                        onclick="openProject('swift')"
+                    >
+                        <h3>chameleon hackathon</h3>
+                        <p>
+                            placed first at the 2025 chameleon hackathon
+                        </p>
+                        <div class="project-tags">
+
+                            <span class="tag">esp32</span>
+                            <span class="tag">hackathon</span>
+                            <span class="tag">outdoor</span>
+                            <span class="tag">prevention</span>
                         </div>
                     </div>
                 </div>
@@ -774,35 +817,80 @@
         <div id="ardms" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>ardms, autonomous racing drone motion controller</h1>
-                <div class="project-meta">python • autonomous</div>
+                <h1>ARDMS – Autonomous Racing Drone Motion Controller</h1>
+                <div class="project-meta">Python • Autonomous • Firmware</div>
                 <p>
-                    an autonomous racing drone motion controller built with python for the easiest way to control your drone. this system lets the user to program basic autonomous routes with ease and consistency. addtionally this system automatically calibrates the pid loop for each motor on the quadcopter by strapping the quad to a surface then letting it attempt to measure the power curves on each lateral plane to detect values for the p, i and d of a preprogrammed pid controller.
+                    i pursed creating ardms because of the lack of AM32 firmware in the united states due to the ukraine russia war that created the alka motors company. ardms is not a replacement for software like ardupilot or inav, it is simple, reliable and easy to use firmware that communicates with betaflight and its forks. ARDMS is an autonomous racing drone motion controller firmware built in Python to simplify drone control.
+                    It allows users to program autonomous flight routes with ease and repeatability. The system also includes
+                    automatic PID loop calibration for each motor: by strapping the quadcopter to a surface, ARDMS measures
+                    the power curves on each lateral axis to calculate optimal P, I, and D values for a pre-programmed PID controller.
                 </p>
+                <a href="https://github.com/yourusername/ardms" target="_blank" class="github-btn">view on github</a>
+                <h3>Features</h3>
+                <ul>
+                    <li>program custom flight routes with installed gps system</li>
+                    <li>automatic pid calibration using strapped testing for initial setup</li>
+                    <li>communicates with betaflight software and forks of it</li>
+                    <li>supports esc communication using mosfet regulation</li>
+                </ul>
 
                 <div class="demo-section">
-                    <h3>demo</h3>
-                    <img
-                        src="https://via.placeholder.com/800x450/111/666?text=Project+Demo"
-                        alt="Project Demo"
-                        class="demo-image"
-                    />
-                    <p class="demo-caption">project screenshot placeholder</p>
+                    <h3>Pics & Demo</h3>
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-ngsm.jpeg"
+                            alt="Project Demo"
+                            class="demo-image"
+                            style="width:50%; height:auto;"
+                        />
+                        <p class="demo-caption">
+                            MOSFET layout for ARDMS testing
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-snac.jpeg"
+                            alt="Project Demo"
+                            class="demo-image"
+                            style="width: 50%; height: auto;"
+                        />
+                        <p class="demo-caption">
+                            Connection of flight controller with custom firmware to ESC – testing MOSFET activation
+                        </p>
+                    </div>
+
+
+
+                    <div class="demo-wrapper">
+                        <video controls width="50%" poster="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/pic1.jpeg">
+                            <source src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/vid1.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="demo-caption">
+                            Demo of custom firmware communicating with Betaflight software. ESC is disconnected to prevent accidental MOSFET activation.
+                        </p>
+                    </div>
                 </div>
 
-                <h3>features</h3>
+
+
+                <h3>Process</h3>
+                <ol>
+                    <li>compared ardupilot with inav to determine what my feature list would consist of</li>
+                    <li>used shoelace theory to determine the area selected by the user</li>
+                    <li>Implemented automatic PID calibration by calculating optimal P, I, and D values from the measured curves.</li>
+                    <li>Built integration with Betaflight software for testing, debugging, and visualizing motor outputs safely without arming the ESCs.</li>
+                    <li>Tested MOSFET activation and motor responses, iteratively refining the calibration algorithms for accuracy and stability.</li>
+                    <li>Added functionality to allow users to program autonomous routes using a simple, repeatable workflow.</li>
+                </ol>
+
+                <h3>Details</h3>
                 <ul>
-                    <li>feature one description here</li>
-                    <li>feature two description here</li>
-                    <li>feature three description here</li>
-                    <li>feature four description here</li>
-                </ul>
-                <h3>tech stack</h3>
-                <ul>
-                    <li>technology one</li>
-                    <li>technology two</li>
-                    <li>technology three</li>
-                    <li>technology four</li>
+                    <li>chose mosfet regulation because am32 esc's require mosfet regulation to efficiently regulate the motor output. i had to add the mosfet regulation because regular f405 stack firmware distributed in the united states did not support mosfet regulation.</li>
+                    <li>communication protocol of dshot was chosen because it gave the most speed between the stack and allowed for mosfet regulation as i wanted</li>
+                    <li>i used full duplex isntead of a half duplex serial connection because i needed to support the mosfet regulation that took place over the dshot protocol which half-duplex did not have the bandwidth to communicate </li>
+                    <li>installation via the betaflight firmware flasher using the firmware provided in the github</li>
                 </ul>
             </div>
         </div>
@@ -810,36 +898,80 @@
         <div id="swift" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>lorem 2</h1>
-                <div class="project-meta">tag • tag • tag</div>
+                <h1>SWIFT – Swarm With Intelligent Formation Tracking for ML-Enhanced Infrared Detection in Search Operations</h1>
+                <div class="project-meta">Python • Autonomous • Swarm</div>
                 <p>
-                    consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.
+                    i pursed creating ardms because of the lack of AM32 firmware in the united states due to the ukraine russia war that created the alka motors company. ardms is not a replacement for software like ardupilot or inav, it is simple, reliable and easy to use firmware that communicates with betaflight and its forks. ARDMS is an autonomous racing drone motion controller firmware built in Python to simplify drone control.
+                    It allows users to program autonomous flight routes with ease and repeatability. The system also includes
+                    automatic PID loop calibration for each motor: by strapping the quadcopter to a surface, ARDMS measures
+                    the power curves on each lateral axis to calculate optimal P, I, and D values for a pre-programmed PID controller.
                 </p>
+                <a href="https://github.com/georgemonkey/WSSEF_SWIFT" target="_blank" class="github-btn">view on github</a>
+                <h3>Features</h3>
+                <ul>
+                    <li>program custom flight routes with installed gps system</li>
+                    <li>automatic pid calibration using strapped testing for initial setup</li>
+                    <li>communicates with betaflight software and forks of it</li>
+                    <li>supports esc communication using mosfet regulation</li>
+                </ul>
 
                 <div class="demo-section">
-                    <h3>demo</h3>
-                    <img
-                        src="https://via.placeholder.com/800x450/111/666?text=Project+Demo"
-                        alt="Project Demo"
-                        class="demo-image"
-                    />
-                    <p class="demo-caption">project screenshot placeholder</p>
+                    <h3>Pics & Demo</h3>
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-ngsm.jpeg"
+                            alt="Project Demo"
+                            class="demo-image"
+                            style="width:50%; height:auto;"
+                        />
+                        <p class="demo-caption">
+                            MOSFET layout for ARDMS testing
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-snac.jpeg"
+                            alt="Project Demo"
+                            class="demo-image"
+                            style="width: 50%; height: auto;"
+                        />
+                        <p class="demo-caption">
+                            Connection of flight controller with custom firmware to ESC – testing MOSFET activation
+                        </p>
+                    </div>
+
+
+
+                    <div class="demo-wrapper">
+                        <video controls width="50%" poster="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/pic1.jpeg">
+                            <source src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/vid1.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="demo-caption">
+                            Demo of custom firmware communicating with Betaflight software. ESC is disconnected to prevent accidental MOSFET activation.
+                        </p>
+                    </div>
                 </div>
 
-                <h3>features</h3>
+
+
+                <h3>Process</h3>
+                <ol>
+                    <li>compared ardupilot with inav to determine what my feature list would consist of</li>
+                    <li>used shoelace theory to determine the area selected by the user</li>
+                    <li>Implemented automatic PID calibration by calculating optimal P, I, and D values from the measured curves.</li>
+                    <li>Built integration with Betaflight software for testing, debugging, and visualizing motor outputs safely without arming the ESCs.</li>
+                    <li>Tested MOSFET activation and motor responses, iteratively refining the calibration algorithms for accuracy and stability.</li>
+                    <li>Added functionality to allow users to program autonomous routes using a simple, repeatable workflow.</li>
+                </ol>
+
+                <h3>Details</h3>
                 <ul>
-                    <li>feature one description here</li>
-                    <li>feature two description here</li>
-                    <li>feature three description here</li>
-                    <li>feature four description here</li>
-                </ul>
-                <h3>tech stack</h3>
-                <ul>
-                    <li>technology one</li>
-                    <li>technology two</li>
-                    <li>technology three</li>
-                    <li>technology four</li>
+                    <li>chose mosfet regulation because am32 esc's require mosfet regulation to efficiently regulate the motor output. i had to add the mosfet regulation because regular f405 stack firmware distributed in the united states did not support mosfet regulation.</li>
+                    <li>communication protocol of dshot was chosen because it gave the most speed between the stack and allowed for mosfet regulation as i wanted</li>
+                    <li>i used full duplex isntead of a half duplex serial connection because i needed to support the mosfet regulation that took place over the dshot protocol which half-duplex did not have the bandwidth to communicate </li>
+                    <li>installation via the betaflight firmware flasher using the firmware provided in the github</li>
                 </ul>
             </div>
         </div>
