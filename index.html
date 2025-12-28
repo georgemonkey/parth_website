@@ -298,6 +298,15 @@
                 color: #111;
             }
 
+            .revealtag {
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+                background: #4E9AFF;
+                border-radius: 6px;
+                color: #000;
+
+            }
+
             /* about section */
             #about {
                 background: #000;
@@ -499,6 +508,52 @@
                     right: 1rem;
                 }
             }
+            .reveal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .reveal-icon {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 1.3rem;
+                color: #fff;
+                transition: transform 0.25s ease;
+            }
+
+            .reveal-list {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                margin-top: 1rem;
+            }
+
+            .reveal-stack.open .reveal-list {
+                max-height: 600px;
+            }
+
+            .reveal-stack.open .reveal-icon {
+                transform: rotate(45deg);
+            }
+
+            .reveal-item {
+                display: block;
+                padding: 0.6rem 0;
+                font-size: 0.95rem;
+                color: #aaa;
+                text-decoration: none;
+                border-bottom: 1px solid #111;
+                transition: color 0.2s ease;
+            }
+
+            .reveal-item:hover {
+                color: #fff;
+            }
+
+            .reveal-item:last-child {
+                border-bottom: none;
+            }
         </style>
     </head>
     <body>
@@ -631,6 +686,37 @@
                                 <span class="tag">drones</span>
                                 <span class="tag">autonomous</span>
                             </div>
+                    </div>
+
+                    <div class="project-card reveal-stack open">
+                        <div class="reveal-header">
+                            <h3>vex competition reveals</h3>
+                            <span class="reveal-icon">eternity</span>
+                        </div>
+
+                        <div class="reveal-list">
+                            <a class="reveal-item" href="https://www.youtube.com/watch?v=an8Hfyep8Tc" target="_blank">
+                                24-25 fall
+                            </a>
+                            <a class="reveal-item" href="https://www.youtube.com/watch?v=O1EUbVMR854" target="_blank">
+                                24-25 winter - mecha mayhem
+                            </a>
+                            <a class="reveal-item" href="https://www.youtube.com/watch?v=H-ig7O3XWHE" target="_blank">
+                                24-25 worlds
+                            </a>
+                            <a class="reveal-item" href="https://www.youtube.com/watch?v=zfe3Ch_WkaM" target="_blank">
+                                25-26 summer - great planes
+                            </a>
+                            <a class="reveal-item" href="https://www.instagram.com/p/DQ0vRtFj5pL/" target="_blank">
+                                25-26 fall
+                            </a>
+                            <a class="reveal-item" href="https://www.youtube.com/@EternityRobotics" target="_blank">
+                                25-26 winter - ignite
+                            </a>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="revealtag">film/photography</span>
                         </div>
                     </div>
                 </div>
@@ -657,10 +743,28 @@
                     <h2>contact</h2>
                     <p>
                         email:
-                        <a href="mailto:parth.amradkar@gmail.com"
-                            >parth.amradkar@gmail.com</a
-                        >
+                        <a href="#" id="copy-email">parth.amradkar@gmail.com</a>
                     </p>
+
+                    <script>
+                        const link = document.getElementById("copy-email");
+                        const originalText = link.textContent;
+
+                        link.addEventListener("click", (e) => {
+                            e.preventDefault();
+
+                            navigator.clipboard
+                                .writeText(originalText)
+                                .then(() => {
+                                    link.textContent = "copied";
+
+                                    // Optional: revert back after 2 seconds
+                                    setTimeout(() => {
+                                        link.textContent = originalText;
+                                    }, 2000);
+                                });
+                        });
+                    </script>
                     <p>discord: <a href="about:blank">overedits</a></p>
                 </div>
             </section>
@@ -673,9 +777,7 @@
                 <h1>ardms, autonomous racing drone motion controller</h1>
                 <div class="project-meta">python • autonomous</div>
                 <p>
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit. sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
+                    an autonomous racing drone motion controller built with python for the easiest way to control your drone. this system lets the user to program basic autonomous routes with ease and consistency. addtionally this system automatically calibrates the pid loop for each motor on the quadcopter by strapping the quad to a surface then letting it attempt to measure the power curves on each lateral plane to detect values for the p, i and d of a preprogrammed pid controller.
                 </p>
 
                 <div class="demo-section">
@@ -745,36 +847,73 @@
         <div id="voxelab" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>lorem 3</h1>
-                <div class="project-meta">tag • tag • tag</div>
+                <h1>accelerated 3d printer</h1>
+                <div class="project-meta">cluster • offload • 3d printing</div>
                 <p>
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. ut enim ad minim veniam.
+                    a generic ender 3 clone (voxelab aquila), which has a
+                    internal mcu to control the motors and read limit switches.
+                    additionally to increase print speeds dramatically, the
+                    internal mcu communicates with a minnowboard or raspbery pi
+                    cluster to offload the computational load to the external
+                    device.
                 </p>
 
                 <div class="demo-section">
-                    <h3>demo</h3>
+                    <h3>process pictures</h3>
                     <img
-                        src="https://via.placeholder.com/800x450/111/666?text=Project+Demo"
+                        src="assets/pic3.jpeg"
                         alt="Project Demo"
                         class="demo-image"
                     />
-                    <p class="demo-caption">project screenshot placeholder</p>
+                    <img
+                        src="assets/pic2.jpeg"
+                        alt="Project Demo"
+                        class="demo-image"
+                        width="20%"
+                    />
                 </div>
 
+                <h3>process</h3>
+                <p>
+                    1. i first stripped the printer of its mcu and wired it
+                    externally with a connection directly to the desired
+                    computation device. (minnowboard or 5 rpi cluster )
+                </p>
+                <p>
+                    2. modified the printer mcu to completely offload heavy
+                    tasks onto the computation device
+                </p>
+                <p>
+                    3. attempted a homing run but encountered an issue with the
+                    speed of communication between the mcu and the computation
+                    device. this was resolved by optimizing the communication
+                    protocol and increasing the baud rate. the optimized
+                    communication protocol allowed for faster data transfer and
+                    reduced latency, resulting in improved printing performance.
+                </p>
+
+                <p>
+                    4. attempted a extrusion test but i ran into a issue with
+                    cooling of the extruded filament by the higher speed. i
+                    resolved this by creating a more intense cooling sytem that
+                    had an intake and outtake fan towards the build plate.
+                </p>
                 <h3>features</h3>
                 <ul>
-                    <li>feature one description here</li>
-                    <li>feature two description here</li>
-                    <li>feature three description here</li>
-                    <li>feature four description here</li>
+                    <li>508% increase in printing speed</li>
+                    <li>physical cooling improvement</li>
+                    <li>web interface to control cluster and send gcode</li>
+                    <li>automatic mmu control</li>
+                    <li>
+                        theoretically infinite filament options during printing
+                    </li>
                 </ul>
                 <h3>tech stack</h3>
                 <ul>
-                    <li>technology one</li>
-                    <li>technology two</li>
-                    <li>technology three</li>
-                    <li>technology four</li>
+                    <li>computational offload</li>
+                    <li>multicolor printing</li>
+                    <li>thread utilization</li>
+                    <li>web interface</li>
                 </ul>
             </div>
         </div>
@@ -948,6 +1087,7 @@
                     }
                 });
             });
+
         </script>
     </body>
 </html>
