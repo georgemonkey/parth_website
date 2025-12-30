@@ -300,6 +300,7 @@
 
             .revealtag {
                 font-size: 0.85rem;
+                margin-top: 1rem;
                 padding: 0.4rem 1rem;
                 background: #4E9AFF;
                 border-radius: 6px;
@@ -832,6 +833,7 @@
                     <li>automatic pid calibration using strapped testing for initial setup</li>
                     <li>communicates with betaflight software and forks of it</li>
                     <li>supports esc communication using mosfet regulation</li>
+                    <li>utilizes gps module to plan routes using a simple line based following</li>
                 </ul>
 
                 <div class="demo-section">
@@ -876,14 +878,14 @@
 
 
                 <h3>Process</h3>
-                <ol>
+                <ul>
                     <li>compared ardupilot with inav to determine what my feature list would consist of</li>
                     <li>used shoelace theory to determine the area selected by the user</li>
                     <li>Implemented automatic PID calibration by calculating optimal P, I, and D values from the measured curves.</li>
                     <li>Built integration with Betaflight software for testing, debugging, and visualizing motor outputs safely without arming the ESCs.</li>
                     <li>Tested MOSFET activation and motor responses, iteratively refining the calibration algorithms for accuracy and stability.</li>
                     <li>Added functionality to allow users to program autonomous routes using a simple, repeatable workflow.</li>
-                </ol>
+                </ul>
 
                 <h3>Details</h3>
                 <ul>
@@ -901,56 +903,40 @@
                 <h1>SWIFT – Swarm With Intelligent Formation Tracking for ML-Enhanced Infrared Detection in Search Operations</h1>
                 <div class="project-meta">Python • Autonomous • Swarm</div>
                 <p>
-                    i pursed creating ardms because of the lack of AM32 firmware in the united states due to the ukraine russia war that created the alka motors company. ardms is not a replacement for software like ardupilot or inav, it is simple, reliable and easy to use firmware that communicates with betaflight and its forks. ARDMS is an autonomous racing drone motion controller firmware built in Python to simplify drone control.
-                    It allows users to program autonomous flight routes with ease and repeatability. The system also includes
-                    automatic PID loop calibration for each motor: by strapping the quadcopter to a surface, ARDMS measures
-                    the power curves on each lateral axis to calculate optimal P, I, and D values for a pre-programmed PID controller.
+                    swift is a open-source project for wssef, it allows users to program autonomous flight routes with ease and repeatability. swift is highly based on my previous project ardms, which was a motion controller for autonomous programming. swift is a more professional version of ardms with swarm support and higher consistency rates with a post-disaster recovery operations system. we plan to include a drone unit for this project as a central hub to communicate movements to the swarm. Additionally, having multiple search modes to target specific situations of the environment.
                 </p>
                 <a href="https://github.com/georgemonkey/WSSEF_SWIFT" target="_blank" class="github-btn">view on github</a>
                 <h3>Features</h3>
                 <ul>
-                    <li>program custom flight routes with installed gps system</li>
-                    <li>automatic pid calibration using strapped testing for initial setup</li>
-                    <li>communicates with betaflight software and forks of it</li>
-                    <li>supports esc communication using mosfet regulation</li>
+                    <li>series drone positionin for ultra-long range search distances</li>
+                    <li>automatic takeoff landing based on flight status and individual node health </li>
+                    <li>cheap and easy for first responders to use</li>
+                    <li>under 249g fiaa drone launch laws</li>
                 </ul>
 
                 <div class="demo-section">
                     <h3>Pics & Demo</h3>
                     <div class="demo-wrapper">
                         <img
-                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-ngsm.jpeg"
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251230-btaw.png"
                             alt="Project Demo"
                             class="demo-image"
                             style="width:50%; height:auto;"
                         />
                         <p class="demo-caption">
-                            MOSFET layout for ARDMS testing
+                            prototype of search software - desktop app
                         </p>
                     </div>
 
                     <div class="demo-wrapper">
                         <img
-                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-snac.jpeg"
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251230-btkr.png"
                             alt="Project Demo"
                             class="demo-image"
                             style="width: 50%; height: auto;"
                         />
                         <p class="demo-caption">
-                            Connection of flight controller with custom firmware to ESC – testing MOSFET activation
-                        </p>
-                    </div>
-
-
-
-                    <div class="demo-wrapper">
-                        <video controls width="50%" poster="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/pic1.jpeg">
-                            <source src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/vid1.mov" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p class="demo-caption">
-                            Demo of custom firmware communicating with Betaflight software. ESC is disconnected to prevent accidental MOSFET activation.
-                        </p>
+                            prototype of general search algorithm based off given area using shoelace theory
                     </div>
                 </div>
 
@@ -958,20 +944,13 @@
 
                 <h3>Process</h3>
                 <ol>
-                    <li>compared ardupilot with inav to determine what my feature list would consist of</li>
-                    <li>used shoelace theory to determine the area selected by the user</li>
-                    <li>Implemented automatic PID calibration by calculating optimal P, I, and D values from the measured curves.</li>
-                    <li>Built integration with Betaflight software for testing, debugging, and visualizing motor outputs safely without arming the ESCs.</li>
-                    <li>Tested MOSFET activation and motor responses, iteratively refining the calibration algorithms for accuracy and stability.</li>
-                    <li>Added functionality to allow users to program autonomous routes using a simple, repeatable workflow.</li>
+
+                    <li>need to add</li>
                 </ol>
 
                 <h3>Details</h3>
                 <ul>
-                    <li>chose mosfet regulation because am32 esc's require mosfet regulation to efficiently regulate the motor output. i had to add the mosfet regulation because regular f405 stack firmware distributed in the united states did not support mosfet regulation.</li>
-                    <li>communication protocol of dshot was chosen because it gave the most speed between the stack and allowed for mosfet regulation as i wanted</li>
-                    <li>i used full duplex isntead of a half duplex serial connection because i needed to support the mosfet regulation that took place over the dshot protocol which half-duplex did not have the bandwidth to communicate </li>
-                    <li>installation via the betaflight firmware flasher using the firmware provided in the github</li>
+                    <li>need to add</li>
                 </ul>
             </div>
         </div>
@@ -979,73 +958,63 @@
         <div id="voxelab" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>accelerated 3d printer</h1>
-                <div class="project-meta">cluster • offload • 3d printing</div>
+                <h1>Accelerated 3D Printer</h1>
+                <div class="project-meta">Cluster • Offload • 3D Printing</div>
                 <p>
-                    a generic ender 3 clone (voxelab aquila), which has a
-                    internal mcu to control the motors and read limit switches.
-                    additionally to increase print speeds dramatically, the
-                    internal mcu communicates with a minnowboard or raspbery pi
-                    cluster to offload the computational load to the external
-                    device.
+                    i decided to create a high speed 3d printer purely out of curiousty as i wanted to see how far i could push a ender 3 clone. so i decided to create a system that would work with the inbuilt printer hardware and give extra power to the printer that worked by
+                    the internal mcu controlled the motors and read limit switches, while computationally heavy tasks
+                    are offloaded to a minnowboard or raspberry pi cluster. this allows for faster printing without overloading the printer’s internal controller.
                 </p>
 
-                <div class="demo-section">
-                    <h3>process pictures</h3>
-                    <img
-                        src="assets/pic3.jpeg"
-                        alt="Project Demo"
-                        class="demo-image"
-                    />
-                    <img
-                        src="assets/pic2.jpeg"
-                        alt="Project Demo"
-                        class="demo-image"
-                        width="20%"
-                    />
-                </div>
-
-                <h3>process</h3>
-                <p>
-                    1. i first stripped the printer of its mcu and wired it
-                    externally with a connection directly to the desired
-                    computation device. (minnowboard or 5 rpi cluster )
-                </p>
-                <p>
-                    2. modified the printer mcu to completely offload heavy
-                    tasks onto the computation device
-                </p>
-                <p>
-                    3. attempted a homing run but encountered an issue with the
-                    speed of communication between the mcu and the computation
-                    device. this was resolved by optimizing the communication
-                    protocol and increasing the baud rate. the optimized
-                    communication protocol allowed for faster data transfer and
-                    reduced latency, resulting in improved printing performance.
-                </p>
-
-                <p>
-                    4. attempted a extrusion test but i ran into a issue with
-                    cooling of the extruded filament by the higher speed. i
-                    resolved this by creating a more intense cooling sytem that
-                    had an intake and outtake fan towards the build plate.
-                </p>
-                <h3>features</h3>
+                <h3>Features</h3>
                 <ul>
                     <li>508% increase in printing speed</li>
-                    <li>physical cooling improvement</li>
+                    <li>physical cooling improvement for high-speed extrusion</li>
                     <li>web interface to control cluster and send gcode</li>
-                    <li>automatic mmu control</li>
-                    <li>
-                        theoretically infinite filament options during printing
-                    </li>
+                    <li>automatic mmu control for multi-material printing</li>
+                    <li>theoretically infinite filament options during printing</li>
                 </ul>
-                <h3>tech stack</h3>
+
+                <div class="demo-section">
+                    <h3>Pics & Demo</h3>
+                    <div class="demo-wrapper">
+                        <img
+                            src="assets/pic3.jpeg"
+                            alt="Printer Setup"
+                            class="demo-image"
+                            style="width:80%; height:auto;"
+                        />
+                        <p class="demo-caption">
+                            voxelab aquila setup with external computational offload
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="assets/pic2.jpeg"
+                            alt="Cluster Connection"
+                            class="demo-image"
+                            style="width:50%; height:auto;"
+                        />
+                        <p class="demo-caption">
+                            fan configuration for higher speeds - NEED TO ADD DRAWINGS
+                        </p>
+                    </div>
+                </div>
+
+                <h3>Process</h3>
                 <ul>
-                    <li>computational offload</li>
-                    <li>multicolor printing</li>
-                    <li>thread utilization</li>
-                    <li>web interface</li>
+                    <li>stripped the printer mcu and wired it to communicate with the computation device (minnowboard or 5-node raspberry pi cluster).</li>
+                    <li>modified the printer mcu to offload computationally heavy tasks to the external cluster.</li>
+                    <li>performed homing and identified communication latency issues, which were resolved by optimizing the protocol and increasing baud rate.</li>
+                    <li>tested extrusion at higher speeds encountered cooling issues and i implemented a high-efficiency cooling system with intake and outtake fans over the build plate. which is shown in the second image</li>
+                </ul>
+
+                <h3>Details</h3>
+                <ul>
+                    <li>i chose offloading computation over changing the printer board and parts becuase it was the most efficent and price effective solution to the slow speed.</li>
+                    <li>added a high-efficiency cooling system with intake and outtake fans over the build plate because the extrusion wasn't being cooled on the build plate properly.</li>
+                    <li>i chose to use a mac mini to emulate i(any number i wanted) number of pis to understand what was the optimal configuration for a effiecency and price.</li>
                 </ul>
             </div>
         </div>
