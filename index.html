@@ -58,49 +58,10 @@
                 transition: all 0.5s ease-out;
             }
 
-            /* warning bar */
-            .warning-bar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: #ffcd1a;
-                color: #000;
-                text-align: center;
-                padding: 0.75rem 4rem 0.75rem 2rem;
-                font-size: 0.9rem;
-                font-weight: 500;
-                z-index: 10001;
-                border-bottom: 2px solid #e6b800;
-                transition: transform 0.3s ease;
-            }
-
-            .warning-bar.hidden {
-                transform: translateY(-100%);
-            }
-
-            .warning-close {
-                position: absolute;
-                right: 2rem;
-                top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-                font-size: 1.4rem;
-                font-weight: bold;
-                line-height: 1;
-                color: #000;
-                opacity: 0.7;
-                transition: opacity 0.2s;
-            }
-
-            .warning-close:hover {
-                opacity: 1;
-            }
-
             /* nav */
             nav {
                 position: fixed;
-                top: 48px;
+                top: 0;
                 left: 0;
                 right: 0;
                 display: flex;
@@ -110,13 +71,7 @@
                 backdrop-filter: blur(10px);
                 background: rgba(0, 0, 0, 0.8);
                 z-index: 1000;
-                transition:
-                    top 0.3s,
-                    transform 0.3s;
-            }
-
-            nav.no-warning {
-                top: 0;
+                transition: transform 0.3s;
             }
 
             nav.hidden {
@@ -164,12 +119,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 168px 3rem 80px;
-                transition: padding-top 0.3s;
-            }
-
-            .section.no-warning {
-                padding-top: 120px;
+                padding: 120px 3rem 80px;
             }
 
             /* hero section */
@@ -206,7 +156,11 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-
+            .readmore {
+                color: #9cbcff;
+                text-decoration: underline;
+                cursor: pointer;
+            }
             .desc {
                 color: #aaa;
                 margin-bottom: 3rem;
@@ -302,10 +256,9 @@
                 font-size: 0.85rem;
                 margin-top: 1rem;
                 padding: 0.4rem 1rem;
-                background: #4E9AFF;
+                background: #4e9aff;
                 border-radius: 6px;
                 color: #000;
-
             }
 
             /* about section */
@@ -403,12 +356,14 @@
                 font-weight: 300;
                 color: #fff;
                 margin-bottom: 1rem;
+                text-transform: none;
             }
 
             .project-meta {
                 color: #666;
                 margin-bottom: 3rem;
                 font-size: 0.95rem;
+                text-transform: none;
             }
 
             .project-detail p {
@@ -416,6 +371,7 @@
                 line-height: 1.8;
                 margin-bottom: 1.5rem;
                 font-size: 1.05rem;
+                text-transform: none;
             }
 
             .project-detail h3 {
@@ -424,6 +380,7 @@
                 font-weight: 400;
                 margin-top: 3rem;
                 margin-bottom: 1.5rem;
+                text-transform: capitalize;
             }
 
             .project-detail ul {
@@ -431,14 +388,32 @@
                 padding-left: 0;
             }
 
+            .project-detail ol {
+                list-style: none;
+                padding-left: 0;
+                counter-reset: item;
+            }
+
+            .project-detail ol li {
+                counter-increment: item;
+            }
+
+            .project-detail ol li:before {
+                content: counter(item) ".";
+                position: absolute;
+                left: 0;
+                color: #666;
+            }
+
             .project-detail li {
                 color: #888;
                 padding: 0.6rem 0;
                 padding-left: 1.5rem;
                 position: relative;
+                text-transform: none;
             }
 
-            .project-detail li:before {
+            .project-detail ul li:before {
                 content: "–";
                 position: absolute;
                 left: 0;
@@ -478,91 +453,17 @@
                 font-size: 0.9rem;
                 text-align: center;
                 margin-top: 0.5rem;
+                text-transform: none;
             }
 
-            @media (max-width: 768px) {
-                nav {
-                    padding: 1.5rem 2rem;
-                }
-                .nav-links {
-                    gap: 1.5rem;
-                }
-                .section {
-                    padding: 148px 2rem 60px;
-                }
-                .section.no-warning {
-                    padding-top: 100px;
-                }
-                #hero h1 {
-                    font-size: 2.5rem;
-                }
-                .projects-grid {
-                    grid-template-columns: 1fr;
-                    gap: 1.5rem;
-                }
-                #projects h2,
-                #about h2,
-                #contact h2 {
-                    font-size: 2rem;
-                }
-                .warning-close {
-                    right: 1rem;
-                }
-            }
-            .reveal-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                cursor: pointer;
-            }
-
-            .reveal-icon {
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                font-size: 1.3rem;
-                color: #fff;
-                transition: transform 0.25s ease;
-            }
-
-            .reveal-list {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease;
-                margin-top: 1rem;
-            }
-
-            .reveal-stack.open .reveal-list {
-                max-height: 600px;
-            }
-
-            .reveal-stack.open .reveal-icon {
-                transform: rotate(45deg);
-            }
-
-            .reveal-item {
-                display: block;
-                padding: 0.6rem 0;
-                font-size: 0.95rem;
-                color: #aaa;
-                text-decoration: none;
-                border-bottom: 1px solid #111;
-                transition: color 0.2s ease;
-            }
-
-            .reveal-item:hover {
-                color: #fff;
-            }
-
-            .reveal-item:last-child {
-                border-bottom: none;
-            }
             .demo-wrapper {
                 display: flex;
-                flex-direction: column; /* stack image + caption vertically */
-                align-items: center;    /* center horizontally */
-                justify-content: center; /* center vertically if container has height */
-                text-align: center;      /* center text inside caption */
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
                 width: 100%;
-                margin: 2rem 0;         /* optional spacing above/below */
+                margin: 2rem 0;
             }
 
             .github-btn {
@@ -581,6 +482,69 @@
                 border-color: #fff;
                 color: #fff;
             }
+
+            .reveal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .reveal-icon {
+                font-size: 0.9rem;
+                color: #666;
+                font-weight: 400;
+                transition: color 0.2s ease;
+            }
+
+            .project-card:hover .reveal-icon {
+                color: #fff;
+            }
+
+            .reveal-list {
+                margin-top: 1.5rem;
+            }
+
+            .reveal-item {
+                display: block;
+                padding: 0.8rem 0;
+                font-size: 0.95rem;
+                color: #888;
+                text-decoration: none;
+                border-bottom: 1px solid #111;
+                transition: color 0.2s ease;
+            }
+
+            .reveal-item:hover {
+                color: #fff;
+            }
+
+            .reveal-item:last-child {
+                border-bottom: none;
+            }
+
+            @media (max-width: 768px) {
+                nav {
+                    padding: 1.5rem 2rem;
+                }
+                .nav-links {
+                    gap: 1.5rem;
+                }
+                .section {
+                    padding: 100px 2rem 60px;
+                }
+                #hero h1 {
+                    font-size: 2.5rem;
+                }
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                }
+                #projects h2,
+                #about h2,
+                #contact h2 {
+                    font-size: 2rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -597,12 +561,6 @@
                 <div class="piece"></div>
                 <div class="piece"></div>
             </div>
-        </div>
-
-        <!-- warning bar -->
-        <div id="warning-bar" class="warning-bar">
-            ⚠ projects not filled out completely
-            <span class="warning-close" onclick="closeWarning()">×</span>
         </div>
 
         <!-- nav -->
@@ -653,9 +611,8 @@
                         >
                             <h3>ardms</h3>
                             <p>
-                                autonomous racing drone motion controller, for
-                                STM32 based boards. features automatic pid
-                                calibration.
+                                autonomous racing drone motion controller built
+                                for am32 architecture boards
                             </p>
                             <div class="project-tags">
                                 <span class="tag">python</span>
@@ -667,11 +624,11 @@
                             class="project-card"
                             onclick="openProject('swift')"
                         >
-                            <h3>SWIFT</h3>
+                            <h3>swift</h3>
                             <p>
-                                Swarm With Intelligent Formation Tracking for
-                                ML-Enhanced Infrared Detection in post-disaster
-                                Search Operations
+                                swarm with intelligent formation tracking for
+                                ml-enhanced infrared detection in post-disaster
+                                search operations
                             </p>
                             <div class="project-tags">
                                 <span class="WIPtag">in progress</span>
@@ -688,79 +645,106 @@
                         >
                             <h3>modded voxelab printer</h3>
                             <p>
-                                extremely fast voxelab printer with 30,000
-                                mm/s^2 acceleration. computed by a cluster of
-                                raspberry pi's
+                                highly accelerated voxelab printer with 30,000
+                                mm/s² acceleration, computed with a external
+                                computing device
                             </p>
                             <div class="project-tags">
                                 <span class="tag">3d printer</span>
-                                <span class="tag">rpi cluster</span>
+                                <span class="tag">cluster</span>
                                 <span class="tag">modded</span>
                             </div>
                         </div>
 
-                        <div class="project-card" onclick="openProject('aprd')">
-                            <h3>autonomous payload release drone</h3>
+                        <div
+                            class="project-card"
+                            onclick="openProject('chameleon')"
+                        >
+                            <h3>chameleon hackathon</h3>
                             <p>
-                                a drone that can drop rockets or an desired
-                                payload mid-air using <b>ardms</b> as the motion
-                                controller
+                                placed first at the 2025 chameleon hackathon
+                                with an environmental monitoring system for
+                                mosquito breeding detection
                             </p>
                             <div class="project-tags">
-                                <span class="WIPtag">in progress</span>
-                                <span class="tag">rockets</span>
-                                <span class="tag">payload transport</span>
-                                <span class="tag">drones</span>
-                                <span class="tag">autonomous</span>
+                                <span class="tag">esp32</span>
+                                <span class="tag">hackathon</span>
+                                <span class="tag">iot</span>
+                                <span class="tag">environmental</span>
                             </div>
-                    </div>
-
-                    <div class="project-card reveal-stack open">
-                        <div class="reveal-header">
-                            <h3>vex competition reveals</h3>
-                            <span class="reveal-icon">original</span>
                         </div>
 
-                        <div class="reveal-list">
-                            <a class="reveal-item" href="https://www.youtube.com/watch?v=an8Hfyep8Tc" target="_blank">
-                                24-25 fall
-                            </a>
-                            <a class="reveal-item" href="https://www.youtube.com/watch?v=O1EUbVMR854" target="_blank">
-                                24-25 winter - mecha mayhem
-                            </a>
-                            <a class="reveal-item" href="https://www.youtube.com/watch?v=H-ig7O3XWHE" target="_blank">
-                                24-25 worlds
-                            </a>
-                            <a class="reveal-item" href="https://www.youtube.com/watch?v=zfe3Ch_WkaM" target="_blank">
-                                25-26 summer - great planes
-                            </a>
-                            <a class="reveal-item" href="https://www.instagram.com/p/DQ0vRtFj5pL/" target="_blank">
-                                25-26 fall
-                            </a>
-                            <a class="reveal-item" href="https://www.youtube.com/@EternityRobotics" target="_blank">
-                                25-26 winter - ignite
-                            </a>
+                        <div
+                            class="project-card"
+                            onclick="openProject('stalldetection')"
+                        >
+                            <h3>vex stall detection system</h3>
+                            <p>
+                                multi-parameter motor protection system for
+                                competition robots that prevents overheating
+                                during jams while maintaining driver control
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">c++</span>
+                                <span class="tag">vex robotics</span>
+                                <span class="tag">real-time</span>
+                            </div>
                         </div>
 
-                        <div class="project-tags">
-                            <span class="revealtag">film/photography</span>
-                        </div>
-                    </div>
+                        <div class="project-card">
+                            <div class="reveal-header">
+                                <h3>vex competition reveals</h3>
+                                <span class="reveal-icon">by me</span>
+                            </div>
 
-                    <div
-                        class="project-card"
-                        onclick="openProject('swift')"
-                    >
-                        <h3>chameleon hackathon</h3>
-                        <p>
-                            placed first at the 2025 chameleon hackathon
-                        </p>
-                        <div class="project-tags">
+                            <div class="reveal-list">
+                                <a
+                                    class="reveal-item"
+                                    href="https://www.youtube.com/watch?v=an8Hfyep8Tc"
+                                    target="_blank"
+                                >
+                                    24-25 fall reveal
+                                </a>
+                                <a
+                                    class="reveal-item"
+                                    href="https://www.youtube.com/watch?v=O1EUbVMR854"
+                                    target="_blank"
+                                >
+                                    24-25 winter - mecha mayhem
+                                </a>
+                                <a
+                                    class="reveal-item"
+                                    href="https://www.youtube.com/watch?v=H-ig7O3XWHE"
+                                    target="_blank"
+                                >
+                                    24-25 worlds reveal
+                                </a>
+                                <a
+                                    class="reveal-item"
+                                    href="https://www.youtube.com/watch?v=zfe3Ch_WkaM"
+                                    target="_blank"
+                                >
+                                    25-26 summer - great planes
+                                </a>
+                                <a
+                                    class="reveal-item"
+                                    href="https://www.instagram.com/p/DQ0vRtFj5pL/"
+                                    target="_blank"
+                                >
+                                    25-26 fall reveal
+                                </a>
+                                <a
+                                    class="reveal-item"
+                                    href="https://www.youtube.com/@EternityRobotics"
+                                    target="_blank"
+                                >
+                                    25-26 winter - ignite
+                                </a>
+                            </div>
 
-                            <span class="tag">esp32</span>
-                            <span class="tag">hackathon</span>
-                            <span class="tag">outdoor</span>
-                            <span class="tag">prevention</span>
+                            <div class="project-tags">
+                                <span class="revealtag">film/photography</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -771,7 +755,7 @@
                 <div class="container">
                     <h2>about me</h2>
                     <p>
-                        i'm in 10th grade and im passionate about building,
+                        i'm in 10th grade and i'm passionate about building,
                         programming and sharing my projects with everyone.
                     </p>
                     <p>
@@ -802,14 +786,20 @@
                                 .then(() => {
                                     link.textContent = "copied";
 
-                                    // Optional: revert back after 2 seconds
                                     setTimeout(() => {
                                         link.textContent = originalText;
                                     }, 2000);
                                 });
                         });
                     </script>
-                    <p>discord: <a href="about:blank">overedits</a></p>
+                    <p>
+                        discord:
+                        <a
+                            href="https://discord.com/users/overedits"
+                            target="_blank"
+                            >overedits</a
+                        >
+                    </p>
                 </div>
             </section>
         </div>
@@ -821,19 +811,72 @@
                 <h1>ARDMS – Autonomous Racing Drone Motion Controller</h1>
                 <div class="project-meta">Python • Autonomous • Firmware</div>
                 <p>
-                    i pursed creating ardms because of the lack of AM32 firmware in the united states due to the ukraine russia war that created the alka motors company. ardms is not a replacement for software like ardupilot or inav, it is simple, reliable and easy to use firmware that communicates with betaflight and its forks. ARDMS is an autonomous racing drone motion controller firmware built in Python to simplify drone control.
-                    It allows users to program autonomous flight routes with ease and repeatability. The system also includes
-                    automatic PID loop calibration for each motor: by strapping the quadcopter to a surface, ARDMS measures
-                    the power curves on each lateral axis to calculate optimal P, I, and D values for a pre-programmed PID controller.
+                    I pursued creating ARDMS because of the lack of AM32
+                    firmware availability in the US because of Ukraine and
+                    Russia using autonomous drones in their warfare, but i still
+                    wanted to keep creating and flying my drones. ARDMS is not a
+                    replacement for software like ArduPilot or iNav, it is
+                    simple, reliable, and easy to use firmware that communicates
+                    with Betaflight and its forks. ARDMS is an autonomous racing
+                    drone motion controller firmware built in Python to simplify
+                    drone control. It allows users to program autonomous flight
+                    routes with ease and consistency.
+                    <a
+                        href="https://en.wikipedia.org/wiki/MOSFET"
+                        class="readmore"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><b>MOSFET</b></a
+                    >
+                    regulation is utilized for the controlling of the ESC,
+                    unlike most F405 firmware versions. The system also includes
+                    automatic
+                    <a
+                        href="https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller"
+                        class="readmore"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><b>PID loop</b></a
+                    >
+                    calibration for each motor my program acheives this by
+                    strapping the quadcopter to a surface, ARDMS measures the
+                    power curves on each lateral axis to calculate optimal P, I,
+                    and D values for a pre-programmed PID controller based on a
+                    iFlight Nazgul DC5 with stock motors and a 389g payload.
                 </p>
-                <a href="https://github.com/yourusername/ardms" target="_blank" class="github-btn">view on github</a>
+                <!--<a
+                    href="https://github.com/yourusername/ardms"
+                    target="_blank"
+                    class="github-btn"
+                    >view on github</a
+                >-->
+
                 <h3>Features</h3>
                 <ul>
-                    <li>program custom flight routes with installed gps system</li>
-                    <li>automatic pid calibration using strapped testing for initial setup</li>
-                    <li>communicates with betaflight software and forks of it</li>
-                    <li>supports esc communication using mosfet regulation</li>
-                    <li>utilizes gps module to plan routes using a simple line based following</li>
+                    <li>
+                        Program custom flight routes with installed GPS module
+                        for predictable autonomous missions
+                    </li>
+                    <li>
+                        Automatic PID calibration using strapped testing for
+                        initial setup and tuning
+                    </li>
+                    <li>
+                        Communicates with Betaflight software and its forks for
+                        testing and configuration
+                    </li>
+                    <li>
+                        Supports ESC communication using MOSFET regulation for
+                        motor control
+                    </li>
+                    <li>
+                        Utilizes GPS module to plan routes using simple
+                        line-based path following algorithms
+                    </li>
+                    <li>
+                        Full-duplex serial communication for high-bandwidth data
+                        transfer with MOSFET support
+                    </li>
                 </ul>
 
                 <div class="demo-section">
@@ -841,58 +884,118 @@
                     <div class="demo-wrapper">
                         <img
                             src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-ngsm.jpeg"
-                            alt="Project Demo"
+                            alt="MOSFET layout testing"
                             class="demo-image"
-                            style="width:50%; height:auto;"
+                            style="width: 50%; height: auto"
                         />
                         <p class="demo-caption">
-                            MOSFET layout for ARDMS testing
+                            MOSFET layout for ARDMS testing and ESC
+                            communication
                         </p>
                     </div>
 
                     <div class="demo-wrapper">
                         <img
                             src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251227-snac.jpeg"
-                            alt="Project Demo"
+                            alt="Flight controller to ESC connection"
                             class="demo-image"
-                            style="width: 50%; height: auto;"
+                            style="width: 50%; height: auto"
                         />
                         <p class="demo-caption">
-                            Connection of flight controller with custom firmware to ESC – testing MOSFET activation
+                            Connection of flight controller with custom firmware
+                            to ESC – testing MOSFET activation
                         </p>
                     </div>
 
-
-
                     <div class="demo-wrapper">
-                        <video controls width="50%" poster="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/pic1.jpeg">
-                            <source src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/vid1.mov" type="video/mp4">
+                        <video
+                            controls
+                            width="50%"
+                            poster="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/pic1.jpeg"
+                        >
+                            <source
+                                src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/vid1.mov"
+                                type="video/mp4"
+                            />
                             Your browser does not support the video tag.
                         </video>
                         <p class="demo-caption">
-                            Demo of custom firmware communicating with Betaflight software. ESC is disconnected to prevent accidental MOSFET activation.
+                            Demo of custom firmware communicating with
+                            Betaflight software. ESC is disconnected to prevent
+                            accidental MOSFET activation.
                         </p>
                     </div>
                 </div>
 
+                <h3>Development Process</h3>
+                <ol>
+                    <li>
+                        Compared ArduPilot with iNav to determine feature list
+                    </li>
+                    <li>
+                        Used shoelace theory to determine the area selected by
+                        the user for autonomous flight planning
+                    </li>
+                    <li>
+                        Implemented automatic PID calibration by calculating
+                        optimal P, I, and D values from measured power curves
+                    </li>
+                    <li>
+                        Built integration with Betaflight software for testing,
+                        debugging and visualizing motor outputs safely without
+                        arming ESCs
+                    </li>
+                    <li>
+                        Tested MOSFET activation and motor responses and
+                        refining utilizing the predicted power curves for
+                        accuracy and stability
+                    </li>
+                    <li>
+                        Added functionality to allow users to program autonomous
+                        routes using a simple, repeatable workflow
+                    </li>
+                </ol>
 
-
-                <h3>Process</h3>
+                <h3>Technical Details</h3>
                 <ul>
-                    <li>compared ardupilot with inav to determine what my feature list would consist of</li>
-                    <li>used shoelace theory to determine the area selected by the user</li>
-                    <li>Implemented automatic PID calibration by calculating optimal P, I, and D values from the measured curves.</li>
-                    <li>Built integration with Betaflight software for testing, debugging, and visualizing motor outputs safely without arming the ESCs.</li>
-                    <li>Tested MOSFET activation and motor responses, iteratively refining the calibration algorithms for accuracy and stability.</li>
-                    <li>Added functionality to allow users to program autonomous routes using a simple, repeatable workflow.</li>
-                </ul>
-
-                <h3>Details</h3>
-                <ul>
-                    <li>chose mosfet regulation because am32 esc's require mosfet regulation to efficiently regulate the motor output. i had to add the mosfet regulation because regular f405 stack firmware distributed in the united states did not support mosfet regulation.</li>
-                    <li>communication protocol of dshot was chosen because it gave the most speed between the stack and allowed for mosfet regulation as i wanted</li>
-                    <li>i used full duplex isntead of a half duplex serial connection because i needed to support the mosfet regulation that took place over the dshot protocol which half-duplex did not have the bandwidth to communicate </li>
-                    <li>installation via the betaflight firmware flasher using the firmware provided in the github</li>
+                    <li>
+                        Chose MOSFET regulation because AM32 ESCs require MOSFET
+                        regulation to efficiently control motor output. I added
+                        MOSFET regulation because standard F405 stack firmware
+                        distributed in the United States did not support it.
+                    </li>
+                    <li>
+                        Communication protocol uses DShot because it provided
+                        the highest speed between the stack and ESC while
+                        supporting MOSFET regulation
+                    </li>
+                    <li>
+                        Used full-duplex instead of half-duplex serial
+                        connection because full-duplex provided the bandwidth
+                        needed for MOSFET regulation over DShot protocol
+                    </li>
+                    <li>
+                        Installation is performed via the Betaflight firmware
+                        flasher using the firmware provided in the GitHub
+                        repository
+                    </li>
+                    <li>
+                        PID calibration process involves strapping the drone and
+                        running automated test sequences on each axis to measure
+                        response curves
+                    </li>
+                    <li>
+                        GPS waypoint system uses
+                        <a
+                            href="https://en.wikipedia.org/wiki/Linear_interpolation"
+                            class="readmore"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><b>linear interpolation</b></a
+                        >
+                        between points with configurable turning radius for
+                        smooth path following
+                    </li>
                 </ul>
             </div>
         </div>
@@ -900,57 +1003,136 @@
         <div id="swift" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>SWIFT – Swarm With Intelligent Formation Tracking for ML-Enhanced Infrared Detection in Search Operations</h1>
-                <div class="project-meta">Python • Autonomous • Swarm</div>
+                <h1>SWIFT – Swarm With Intelligent Formation Tracking</h1>
+                <div class="project-meta">
+                    Python • Autonomous • Swarm • ML-Enhanced Infrared Detection
+                </div>
                 <p>
-                    swift is a open-source project for wssef, it allows users to program autonomous flight routes with ease and repeatability. swift is highly based on my previous project ardms, which was a motion controller for autonomous programming. swift is a more professional version of ardms with swarm support and higher consistency rates with a post-disaster recovery operations system. we plan to include a drone unit for this project as a central hub to communicate movements to the swarm. Additionally, having multiple search modes to target specific situations of the environment.
+                    SWIFT is an open-source project for WSSEF (Washington State
+                    Science and Engineering Fair). It allows users to program
+                    autonomous flight routes for drone swarms with ease and
+                    repeatability. SWIFT builds on my previous explorations with
+                    ARDMS and offloading computational tasks to an external
+                    unit. Our aim is to create a more professional system with
+                    swarm support and higher consistency rates for post-disaster
+                    recovery operations. The system includes individual node
+                    identification to assign tasks to separate node groups or
+                    even individual nodes, with multiple search modes to target
+                    specific situations.
                 </p>
-                <a href="https://github.com/georgemonkey/WSSEF_SWIFT" target="_blank" class="github-btn">view on github</a>
-                <h3>Features</h3>
+                <a
+                    href="https://github.com/georgemonkey/WSSEF_SWIFT"
+                    target="_blank"
+                    class="github-btn"
+                    >view on github</a
+                >
+
+                <h3>Projected Features</h3>
                 <ul>
-                    <li>series drone positionin for ultra-long range search distances</li>
-                    <li>automatic takeoff landing based on flight status and individual node health </li>
-                    <li>cheap and easy for first responders to use</li>
-                    <li>under 249g fiaa drone launch laws</li>
+                    <li>
+                        Series drone positioning for ultra long range search
+                        distances across difficult terrain
+                    </li>
+                    <li>
+                        Automatic takeoff and landing based on flight status and
+                        individual node health monitoring
+                    </li>
+                    <li>
+                        Affordable and easy-to-deploy system designed for first
+                        responders with minimal complex background knowledge
+                        needed
+                    </li>
+                    <li>
+                        Under 249g FAA drone launch weight regulations for
+                        unrestricted deployment
+                    </li>
+                    <li>
+                        ML-enhanced thermal imaging for detecting heat
+                        signatures in search and rescue operations
+                    </li>
+                    <li>
+                        Formation tracking algorithms to maintain swarm
+                        coordination during search patterns
+                    </li>
                 </ul>
 
                 <div class="demo-section">
-                    <h3>Pics & Demo</h3>
+                    <h3>Development Progress</h3>
                     <div class="demo-wrapper">
                         <img
                             src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251230-btaw.png"
-                            alt="Project Demo"
+                            alt="SWIFT Desktop Application"
                             class="demo-image"
-                            style="width:50%; height:auto;"
+                            style="width: 50%; height: auto"
                         />
                         <p class="demo-caption">
-                            prototype of search software - desktop app
+                            Prototype of search software - desktop application
+                            for mission planning
                         </p>
                     </div>
 
                     <div class="demo-wrapper">
                         <img
                             src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251230-btkr.png"
-                            alt="Project Demo"
+                            alt="Search Algorithm Visualization"
                             class="demo-image"
-                            style="width: 50%; height: auto;"
+                            style="width: 50%; height: auto"
                         />
                         <p class="demo-caption">
-                            prototype of general search algorithm based off given area using shoelace theory
+                            Prototype of general search algorithm based on given
+                            area using shoelace theory to make sure the swarm
+                            doesnt miss a spot - sort of like a roomby!!
+                        </p>
                     </div>
                 </div>
 
-
-
-                <h3>Process</h3>
-                <ol>
-
-                    <li>need to add</li>
-                </ol>
-
-                <h3>Details</h3>
+                <h3>Current Status</h3>
                 <ul>
-                    <li>need to add</li>
+                    <li>
+                        Desktop application for mission planning and swarm
+                        coordination is functional in testing environment
+                    </li>
+                    <li>
+                        Search algorithm using shoelace theory for area coverage
+                        calculation has been implemented.
+                    </li>
+                    <li>
+                        Working on formation tracking algorithms to maintain
+                        swarm cohesion(how tight they stay together) during
+                        search patterns
+                    </li>
+                    <li>
+                        Preparing for WSSEF presentation with the demostration
+                        of a live swarm autonomous programming route.
+                    </li>
+                </ul>
+
+                <h3>Current Technical Details</h3>
+                <ul>
+                    <li>
+                        Uses shoelace formula to calculate search area
+                        boundaries and optimize flight paths for complete
+                        coverage
+                    </li>
+                    <li>
+                        3.5x4in heat seeking sensors for air to ground heat
+                        signature detection
+                    </li>
+                    <li>
+                        Each node approximate cost of 80$, including sensors and
+                        communication modules.
+                    </li>
+                    <li>
+                        Base station approximate cost of 200$, this includes
+                        redundant communication modules and direct connection
+                        with the ground operators computer.
+                    </li>
+                    <li>
+                        Designed to operate under 249g to avoid Part 107
+                        commercial drone regulations and enable fastest
+                        deployment without authorization from the FAA.
+                    </li>
+                    <li>Programmed in Python</li>
                 </ul>
             </div>
         </div>
@@ -958,100 +1140,628 @@
         <div id="voxelab" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>Accelerated 3D Printer</h1>
-                <div class="project-meta">Cluster • Offload • 3D Printing</div>
+                <h1>High-Speed 3D Printer with Distributed Computing</h1>
+                <div class="project-meta">
+                    Cluster• Computational Offload • 3D Printing
+                </div>
                 <p>
-                    i decided to create a high speed 3d printer purely out of curiousty as i wanted to see how far i could push a ender 3 clone. so i decided to create a system that would work with the inbuilt printer hardware and give extra power to the printer that worked by
-                    the internal mcu controlled the motors and read limit switches, while computationally heavy tasks
-                    are offloaded to a minnowboard or raspberry pi cluster. this allows for faster printing without overloading the printer’s internal controller.
+                    I created this high-speed 3D printer out of curiosity to see
+                    how far I could push an Ender 3 clone (Voxelab Aquila). The
+                    goal was to create a system that would work with the
+                    existing printer hardware while adding extra computational
+                    power. The printer's internal MCU handles motor control and
+                    reads limit switches, while computationally heavy tasks like
+                    path planning, acceleration calculations, and G-code
+                    preprocessing are offloaded to a Minnowboard or Raspberry Pi
+                    cluster. This architecture allows for significantly faster
+                    printing without overloading the printer's built-in
+                    controller.
                 </p>
 
                 <h3>Features</h3>
                 <ul>
-                    <li>508% increase in printing speed</li>
-                    <li>physical cooling improvement for high-speed extrusion</li>
-                    <li>web interface to control cluster and send gcode</li>
-                    <li>automatic mmu control for multi-material printing</li>
-                    <li>theoretically infinite filament options during printing</li>
+                    <li>
+                        508% increase in printing speed over stock Voxelab
+                        Aquila configuration (tested with standard PLA with 58%
+                        relative humidity)
+                    </li>
+                    <li>
+                        Physical cooling system improvements designed for
+                        high-speed extrusion and rapid layer cooling
+                    </li>
+                    <li>
+                        Web interface to control cluster, monitor print status,
+                        and send G-code files remotely
+                    </li>
+                    <li>
+                        Automatic MMU (Multi-Material Unit) control for
+                        multi-material printing with filament switching
+                    </li>
+                    <li>
+                        Support for multiple filament types during single print
+                        job with automatic material transitions. (Utilizing
+                        custom MMU)
+                    </li>
+                    <li>
+                        Real-time temperature monitoring and adjustment based on
+                        print speed and material
+                    </li>
                 </ul>
 
                 <div class="demo-section">
-                    <h3>Pics & Demo</h3>
+                    <h3>Hardware Setup</h3>
                     <div class="demo-wrapper">
                         <img
                             src="assets/pic3.jpeg"
-                            alt="Printer Setup"
+                            alt="Voxelab Aquila with external compute"
                             class="demo-image"
-                            style="width:80%; height:auto;"
+                            style="width: 80%; height: auto"
                         />
                         <p class="demo-caption">
-                            voxelab aquila setup with external computational offload
+                            Voxelab Aquila setup with external computational
+                            offload using minnowboard MAX board.
                         </p>
                     </div>
 
                     <div class="demo-wrapper">
                         <img
                             src="assets/pic2.jpeg"
-                            alt="Cluster Connection"
+                            alt="Cooling system configuration"
                             class="demo-image"
-                            style="width:50%; height:auto;"
+                            style="width: 50%; height: auto"
                         />
                         <p class="demo-caption">
-                            fan configuration for higher speeds - NEED TO ADD DRAWINGS
+                            Custom dual-fan cooling configuration for high-speed
+                            printing with intake and exhaust over build plate.
+                            Front fan serves as outtake and fan placed on the
+                            left of the toolhead serves as a intake.
                         </p>
                     </div>
                 </div>
 
-                <h3>Process</h3>
+                <h3>Development Process</h3>
                 <ul>
-                    <li>stripped the printer mcu and wired it to communicate with the computation device (minnowboard or 5-node raspberry pi cluster).</li>
-                    <li>modified the printer mcu to offload computationally heavy tasks to the external cluster.</li>
-                    <li>performed homing and identified communication latency issues, which were resolved by optimizing the protocol and increasing baud rate.</li>
-                    <li>tested extrusion at higher speeds encountered cooling issues and i implemented a high-efficiency cooling system with intake and outtake fans over the build plate. which is shown in the second image</li>
+                    <li>
+                        Stripped the printer MCU and wired it to communicate
+                        with external computation device (Minnowboard or 5-node
+                        Raspberry Pi cluster)
+                    </li>
+                    <li>
+                        Modified printer firmware to offload path planning,
+                        acceleration curves, and G-code preprocessing to
+                        external cluster
+                    </li>
+                    <li>
+                        Performed homing and calibration routines, identifying
+                        communication latency issues between MCU and cluster
+                    </li>
+                    <li>
+                        Resolved latency by optimizing serial communication
+                        protocol and increasing baud rate from 115200 to 250000
+                    </li>
+                    <li>
+                        Tested extrusion at higher speeds and encountered
+                        cooling bottleneck where layers weren't solidifying fast
+                        enough
+                    </li>
+                    <li>
+                        Implemented high-efficiency dual-fan cooling system with
+                        intake and exhaust fans positioned over build plate
+                    </li>
+                    <li>
+                        Iteratively tuned PID temperature control values to
+                        maintain consistent extrusion at increased feed rates
+                    </li>
                 </ul>
 
-                <h3>Details</h3>
+                <h3>Technical Details/Decisions</h3>
                 <ul>
-                    <li>i chose offloading computation over changing the printer board and parts becuase it was the most efficent and price effective solution to the slow speed.</li>
-                    <li>added a high-efficiency cooling system with intake and outtake fans over the build plate because the extrusion wasn't being cooled on the build plate properly.</li>
-                    <li>i chose to use a mac mini to emulate i(any number i wanted) number of pis to understand what was the optimal configuration for a effiecency and price.</li>
+                    <li>
+                        Chose computational offloading over replacing printer
+                        board because it was more cost-effective and allowed
+                        incremental upgrades to computing power
+                    </li>
+                    <li>
+                        Used Mac Mini to emulate variable numbers of Raspberry
+                        Pis during development to determine optimal cluster
+                        configuration for efficiency and cost
+                    </li>
+                    <li>
+                        High-efficiency cooling system uses intake fan to pull
+                        ambient air and exhaust fan to remove heat from build
+                        plate area
+                    </li>
+                    <li>
+                        Cooling configuration critical for maintaining print
+                        quality at 508% speed increase without it layers
+                        delaminated
+                    </li>
+                    <li>
+                        Serial communication runs at 250000 baud over USB
+                        connection between MCU and cluster master node
+                    </li>
+                    <li>
+                        G-code preprocessing on cluster includes path
+                        optimization and acceleration planning calculations
+                    </li>
+                    <li>
+                        5-node RPI setup was most optimal for the voxelab
+                        aquila. It gave the most efficent configuration for the
+                        printer. Not too many, not too few.
+                    </li>
+                    <li>
+                        The emulated RPI was the PI 4B 4GB using a 500mb capped
+                        wired connection.
+                    </li>
                 </ul>
             </div>
         </div>
 
-        <div id="aprd" class="project-detail">
+        <div id="chameleon" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
-                <h1>lorem 4</h1>
-                <div class="project-meta">tag • tag • tag</div>
+                <h1>Mosquito Guard – Environmental Monitoring System</h1>
+                <div class="project-meta">
+                    ESP32 • IoT • Environmental Monitoring • First Place Winner
+                </div>
                 <p>
-                    incididunt ut labore et dolore magna aliqua. ut enim ad
-                    minim veniam, quis nostrud exercitation.
+                    Mosquito Guard is a battery-powered environmental sensor box
+                    that tracks temperature and humidity to calculate real-time
+                    mosquito breeding risk. We built this for under $30 using an
+                    ESP32, DHT11 sensor, and an OLED display all in a 3D-printed
+                    enclosure. The idea was to make something actually
+                    deployable outdoors that could help identify mosquito
+                    hotspots before they become a problem. The system uses a
+                    weighted risk algorithm based on mosquito breeding
+                    thresholds and research, displaying everything through a
+                    standalone WiFi access point with a web dashboard. This
+                    project won first place at the 2025 Chameleon Hackathon.
                 </p>
+                <a
+                    href="https://github.com/georgemonkey/chameleon-hackathon"
+                    target="_blank"
+                    class="github-btn"
+                    >view on github</a
+                >
+
+                <h3>Features</h3>
+                <ul>
+                    <li>
+                        Real-time mosquito breeding risk calculation based on
+                        temperature and humidity thresholds from research using
+                        set location
+                    </li>
+                    <li>
+                        Standalone WiFi access point mean no internet required,
+                        you can connect directly to the device to monitor raw
+                        sensor readings
+                    </li>
+                    <li>
+                        Web dashboard with Chart.js graphs showing historical
+                        trends over selected time periods
+                    </li>
+                    <li>
+                        OLED display shows connection information and sensor
+                        readings directly on the device
+                    </li>
+                    <li>
+                        Compact 3D-printed housing designed for outdoor
+                        deployment with room for battery/solar integration
+                    </li>
+                    <li>
+                        Weighted risk algorithm (60% temperature, 40% humidity)
+                        for accurate breeding condition detection
+                    </li>
+                    <li>
+                        Color-coded risk meter with gradient display (green to
+                        yellow to red) for instant visual feedback
+                    </li>
+                </ul>
+
+                <h3>Features we didnt get time for</h3>
+                <ul>
+                    <li>
+                        Solar panel integration for even longer battery life for
+                        the node.
+                    </li>
+
+                    <li>
+                        Additional sensors for more comprehensive data
+                        collection, such as light, air pressure, quality and
+                        moisture of the soil.
+                    </li>
+                    <li>Mobile app with notifcations for node status.</li>
+                </ul>
 
                 <div class="demo-section">
-                    <h3>demo</h3>
-                    <img
-                        src="https://via.placeholder.com/800x450/111/666?text=Project+Demo"
-                        alt="Project Demo"
-                        class="demo-image"
-                    />
-                    <p class="demo-caption">project screenshot placeholder</p>
+                    <h3>Development Timeline</h3>
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/h1.jpeg"
+                            alt="ESP32 and DHT sensor setup"
+                            class="demo-image"
+                            style="width: 50%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            30 minutes in - experimenting with ESP32 and DHT11
+                            sensor, establishing baseline readings
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/s3.png"
+                            alt="Web dashboard design"
+                            class="demo-image"
+                            style="width: 50%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            1 hour in - finalized web dashboard design,
+                            implementing data storage and visualization
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/iso.png"
+                            alt="3D printed enclosure CAD"
+                            class="demo-image"
+                            style="width: 80%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            CAD design for hardware enclosure - sent to 3D
+                            printer to print during hackathon
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/s2.png"
+                            alt="Presentation slide"
+                            class="demo-image"
+                            style="width: 80%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            Snip of our presentation we gave during the
+                            hackathon
+                        </p>
+                    </div>
                 </div>
 
-                <h3>features</h3>
+                <h3>Development Process</h3>
                 <ul>
-                    <li>feature one description here</li>
-                    <li>feature two description here</li>
-                    <li>feature three description here</li>
-                    <li>feature four description here</li>
+                    <li>
+                        Prototyped on breadboard with ESP32 and DHT11, stored
+                        sensor readings and implemented weighted risk function
+                    </li>
+                    <li>
+                        Researched mosquito breeding conditions to establish
+                        temperature and humidity thresholds for risk calculation
+                        algorithm
+                    </li>
+                    <li>
+                        Built web server on ESP32 serving single-page dashboard
+                        with inline CSS/JS to avoid file system bloatware.
+                    </li>
+                    <li>
+                        Designed risk meter UI with gradient progress bar (green
+                        to yellow to red) updating in real-time based on
+                        weighted score
+                    </li>
+                    <li>
+                        Integrated Chart.js for dual y-axis graphing of
+                        temperature and humidity trends over chosen time
+                        interval
+                    </li>
+                    <li>
+                        Modeled and 3D-printed enclosure for the hardware with
+                        wire management and sensor positioning
+                    </li>
+                    <li>
+                        Wired final assembly inside case with strain relief clip
+                        for DHT sensor cable and configured OLED display to show
+                        WiFi credentials
+                    </li>
+                    <li>
+                        Tested system outdoors to verify readings matched
+                        expected environmental conditions and risk calculations
+                    </li>
                 </ul>
-                <h3>tech stack</h3>
+
+                <h3>Technical Details</h3>
                 <ul>
-                    <li>technology one</li>
-                    <li>technology two</li>
-                    <li>technology three</li>
-                    <li>technology four</li>
+                    <li>
+                        Chose DHT11 sensor because it's affordable and accurate
+                        enough for mosquito risk detection DHT22 would be more
+                        precise but overkill for this application. Also it wasnt
+                        provided to us as part of the parts bin.
+                    </li>
+                    <li>
+                        ESP32 runs in AP mode broadcasting "MosquitoGuard67"
+                        SSID at 192.168.4.1 no router needed just directly
+                        connect to device
+                    </li>
+                    <li>
+                        Risk calculation uses thresholds where temperature
+                        factor evaluates to 0% at 50°F, 50% at 75°F, 90% at
+                        95°F, then drops above 100°F
+                    </li>
+                    <li>
+                        Humidity factor calculates to 0% below 30%, 50% at 42%,
+                        and 90% at 80%+ humidity
+                    </li>
+                    <li>
+                        Final risk score is weighted 60% temperature, 40%
+                        humidity since temperature is the bigger factor in
+                        mosquito lifecycle speed
+                    </li>
+                    <li>
+                        OLED display (128x64 I2C SSD1306) shows IP address and
+                        connection info so you don't need serial monitor in the
+                        field
+                    </li>
+                    <li>
+                        Enclosure designed with battery compartment for future
+                        LiPo + solar panel integration for permanent outdoor
+                        deployment
+                    </li>
+                    <li>
+                        Web server stores last 100 data points in memory for
+                        historical trend visualization without requiring
+                        external database
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="stalldetection" class="project-detail">
+            <button class="back-btn" onclick="closeProject()">← back</button>
+            <div class="project-detail-content">
+                <h1>VEX Stall Detection System</h1>
+
+                <div class="project-meta">
+                    C++ • VEX Robotics • Data Analysis
+                </div>
+
+                <p>
+                    During the vex season - Pushback, our robot’s intake and
+                    storage system would regularly overheat once it filled up
+                    with blocks. The system used three motors (two 5.5W and one
+                    11W), and when jams happened, they would sit stalled for too
+                    long pulling high current and overheating. This led to
+                    slower performance and risked failures at important times
+                    during matches.
+                    <br /><br />
+                    To fix this I created a multi-parameter stall detection
+                    system. It monitors motor RPM, current draw, and temperature
+                    to detect stalls and automatically protect the motors
+                    without taking control away from the driver during scoring.
+                    After testing 12 different stall limits, I landed on a limit
+                    configuration that completely eliminated overheating and
+                    significantly improved reliability throughout the season. My
+                    programming solution was submitted as our teams Innovate
+                    Award entry.
+                </p>
+
+                <h3>The Problem</h3>
+                <ul>
+                    <li>
+                        Intake system needed to handle large numbers of blocks
+                        without causing heat or performance issues
+                    </li>
+                    <li>
+                        Motors would overheat when blocks filled the system,
+                        causing excessive current draw
+                    </li>
+                    <li>
+                        Three motors were affected, two 5.5W motors and one 11W
+                        motor
+                    </li>
+                    <li>
+                        Overheating reduced intake speed and overall drivetrain
+                        speed during matches
+                    </li>
+                    <li>
+                        We didnt have time for a intake rebuild so we needed a
+                        programming solution to fufill this.
+                    </li>
+                    <li>
+                        Needed to protect motors without limiting driver control
+                        during scoring
+                    </li>
+                </ul>
+
+                <h3>Research & Solution Development</h3>
+                <ul>
+                    <li>
+                        Explored multiple stall detection methods, including
+                        current-only, temperature cutoffs, RPM detection, and
+                        combined monitoring
+                    </li>
+                    <li>
+                        Tested each parameter individually to understand how
+                        they behaved under load
+                    </li>
+                    <li>
+                        Found that relying on a single parameter often gave
+                        unconsistent results
+                    </li>
+                    <li>
+                        Determined that combining multiple inputs would provide
+                        the most accurate stall detection
+                    </li>
+                    <li>
+                        Chose to monitor RPM, current draw (mA), and temperature
+                        together
+                    </li>
+                    <li>
+                        Multi-parameter detection proved far more consistent
+                        than single-threshold approaches
+                    </li>
+                </ul>
+
+                <div class="demo-section">
+                    <h3>Pics & Demo</h3>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/d5.png"
+                            alt="Flight controller to ESC connection"
+                            class="demo-image"
+                            style="width: 50%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            The initial problem we were dealing with was the
+                            clogging of the rollers led to the high temperatures
+                            of the motors which caused a performance
+                            degradation. The neon blue graph at the bottom
+                            displays the average temperature of the motors over
+                            time.
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/d3.png"
+                            alt="MOSFET layout testing"
+                            class="demo-image"
+                            style="width: 50%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            First testing of threshold values - we can see that
+                            the stall detection is very stiff to respond.
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/d2.png"
+                            alt="Flight controller to ESC connection"
+                            class="demo-image"
+                            style="width: 50%; height: auto"
+                        />
+                        <p class="demo-caption">
+                            6th variation of threshold values - now we can see
+                            that the stall detection is more responsive to our
+                            monitored values.
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <video controls width="50%">
+                            <source
+                                src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/vid2.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="demo-caption">
+                            Demo of the final programming solution which we used
+                            in tournaments
+                        </p>
+                    </div>
+                </div>
+
+                <h3>Implementation Details</h3>
+                <ul>
+                    <li>
+                        Monitoring of RPM, current draw, and temperature delta
+                    </li>
+                    <li>
+                        RPM stall detection with a recovery window once RPM
+                        rises 20% above the stall threshold
+                    </li>
+                    <li>
+                        Current monitoring with a &lt;1500mA threshold to catch
+                        electrical stalls early in the intaking process
+                    </li>
+                    <li>
+                        Temperature delta tracking over 3-second intervals to
+                        detect heat buildup from jams
+                    </li>
+                    <li>
+                        Automatic power reduction to 20% when a stall is
+                        detected to prevent damage
+                    </li>
+                    <li>
+                        Driver override option during scoring to allow full
+                        power when needed
+                    </li>
+                </ul>
+
+                <h3>Testing Process</h3>
+                <ul>
+                    <li>
+                        Designed a testing process that would stress the system
+                        the most
+                    </li>
+                    <li>
+                        Tested 12 different configurations to dial in optimal
+                        thresholds
+                    </li>
+                    <li>
+                        Used generated graphs to analyze current, RPM, and
+                        temperature behavior
+                    </li>
+                    <li>
+                        Evaluated how often overheating occurred and how it
+                        affected overall bot speed
+                    </li>
+                    <li>
+                        The 12th configuration proved the most stable and
+                        efficient
+                    </li>
+                    <li>
+                        Driver could intake blocks without thinking about
+                        stopping intake to allow for maximnum performance
+                    </li>
+                </ul>
+
+                <h3>Results & Benefits</h3>
+                <ul>
+                    <li>Eliminated motor overheating during competition</li>
+                    <li>
+                        Reduced unnecessary power draw freeing power for the
+                        drivetrain
+                    </li>
+                    <li>
+                        Maintained consistent intake performance throughout
+                        entire matches
+                    </li>
+
+                    <li>
+                        Improved overall robot reliability and increased
+                        endurance throughout the entire match
+                    </li>
+                </ul>
+
+                <h3>Technical Details</h3>
+                <ul>
+                    <li>
+                        Over 25 different thresholds were tested - only 12 made
+                        it to data analysis process
+                    </li>
+                    <li>
+                        VEX motors suffer much more from heat damage than
+                        regular motors because of their lack of a proper metal
+                        heatsink and the downsides of having a high heat
+                        retention time.
+                    </li>
+                    <li>
+                        Used matplotlib for data visualization and analysis.
+                    </li>
+
+                    <li>
+                        Software development was much better than hardware
+                        changes for us because we then we wouldve had to tune
+                        the new intake as well.
+                    </li>
+                    <li>
+                        Driver asked for a override and i implemented it in a
+                        trigger hold sequence that completely bypassed the
+                        heating system which then increased the holding time for
+                        the temp deltas and rpm based processes.
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1082,19 +1792,6 @@
                 );
             });
 
-            // warning bar close
-            function closeWarning() {
-                const warningBar = document.getElementById("warning-bar");
-                const nav = document.getElementById("nav");
-                const sections = document.querySelectorAll(".section");
-
-                warningBar.classList.add("hidden");
-                nav.classList.add("no-warning");
-                sections.forEach((section) => {
-                    section.classList.add("no-warning");
-                });
-            }
-
             // parallax scroll
             let ticking = false;
 
@@ -1116,11 +1813,7 @@
             // navigation
             function scrollToSection(id) {
                 const element = document.getElementById(id);
-                const warningBar = document.getElementById("warning-bar");
-                const warningHeight = warningBar.classList.contains("hidden")
-                    ? 0
-                    : 48;
-                const offset = id === "hero" ? 0 : 80 + warningHeight;
+                const offset = id === "hero" ? 0 : 80;
 
                 window.scrollTo({
                     top: element.offsetTop - offset,
@@ -1188,7 +1881,6 @@
                     }
                 });
             });
-
         </script>
     </body>
 </html>
