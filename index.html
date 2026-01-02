@@ -337,7 +337,7 @@
                 right: 3rem;
                 background: transparent;
                 border: 1px solid #333;
-                color: #888;
+                color: #3f94ff;
                 padding: 0.6rem 1.2rem;
                 border-radius: 6px;
                 cursor: pointer;
@@ -347,7 +347,7 @@
             }
 
             .back-btn:hover {
-                border-color: #fff;
+                border-color: #ffbb3e;
                 color: #fff;
             }
 
@@ -545,6 +545,55 @@
                     font-size: 2rem;
                 }
             }
+
+            .scroll-indicator {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.6rem;
+                cursor: pointer;
+                opacity: 0;
+                transform: translateY(20px);
+                transition:
+                    opacity 0.8s ease-out 0.6s,
+                    transform 0.8s ease-out 0.6s;
+            }
+
+            #hero.visible .scroll-indicator {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .scroll-indicator span {
+                font-size: 1rem;
+                color: #9cbcff;
+                letter-spacing: 0.08em;
+            }
+
+            .arrow {
+                width: 12px;
+                height: 12px;
+                border-right: 5px solid #9cbcff;
+                border-bottom: 5px solid #9cbcff;
+                transform: rotate(45deg);
+                animation: glowBounce 1.6s infinite;
+                filter: drop-shadow(0 0 6px rgba(156, 188, 255, 0.6));
+            }
+
+            @keyframes glowBounce {
+                0% {
+                    transform: rotate(45deg) translateY(0);
+                    opacity: 0.6;
+                }
+                50% {
+                    transform: rotate(45deg) translateY(6px);
+                    opacity: 1;
+                }
+                100% {
+                    transform: rotate(45deg) translateY(0);
+                    opacity: 0.6;
+                }
+            }
         </style>
     </head>
     <body>
@@ -598,6 +647,13 @@
             <section id="hero" class="section">
                 <h1>parth <span class="highlight">amradkar</span></h1>
                 <p class="subtitle">student engineer</p>
+                <div
+                    class="scroll-indicator"
+                    onclick="scrollToSection('projects')"
+                >
+                    <span>see my projects</span>
+                    <div class="arrow"></div>
+                </div>
             </section>
 
             <!-- projects section -->
