@@ -703,9 +703,10 @@
                             <p>
                                 highly accelerated voxelab printer with 30,000
                                 mm/s² acceleration, computed with a external
-                                computing device
+                                computing device.
                             </p>
                             <div class="project-tags">
+                                <span class="WIPtag">in progress</span>
                                 <span class="tag">3d printer</span>
                                 <span class="tag">cluster</span>
                                 <span class="tag">modded</span>
@@ -1056,139 +1057,231 @@
             </div>
         </div>
 
+        <!-- SWIFT PROJECT SECTION — drop-in replacement for the existing #swift div -->
         <div id="swift" class="project-detail">
             <button class="back-btn" onclick="closeProject()">← back</button>
             <div class="project-detail-content">
                 <h1>SWIFT – Swarm With Intelligent Formation Tracking</h1>
                 <div class="project-meta">
                     Python • Autonomous • Swarm • ML-Enhanced Infrared Detection
-                </div>
+
+
                 <p>
-                    SWIFT is an open-source project for WSSEF (Washington State
-                    Science and Engineering Fair). It allows users to program
-                    autonomous flight routes for drone swarms with ease and
-                    repeatability. SWIFT builds on my previous explorations with
-                    ARDMS and offloading computational tasks to an external
-                    unit. Our aim is to create a more professional system with
-                    swarm support and higher consistency rates for post-disaster
-                    recovery operations. The system includes individual node
-                    identification to assign tasks to separate node groups or
-                    even individual nodes, with multiple search modes to target
-                    specific situations.
+                    SWIFT is an open source project developed with two of my robotics buddies
+                    for WSSEF (Washington State Science and Engineering Fair),
+                    where it placed
+                    <strong>first in the Engineering category</strong>. It
+                    provides a low-cost (&lt;$200/drone) multi-drone search and
+                    rescue platform using a leader-follower coordination
+                    architecture, enabling coordinated search patterns with
+                    efficient area coverage, fast completion times, and low
+                    battery consumption with performance comparable to high cost
+                    commercial drone systems.
                 </p>
                 <a
-                    href="https://github.com/georgemonkey/WSSEF_SWIFT"
+                    href="https://github.com/georgemonkey/SWIFT"
                     target="_blank"
                     class="github-btn"
                     >view on github</a
                 >
 
-                <h3>Projected Features</h3>
+                <h3>System Architecture</h3>
+                <p>
+                    The system uses a <strong>leader-follower model</strong> which is when
+                    one drone computes the global path while follower drones
+                    maintain relative formation positions, calculating movements on one system helps with reducing skew in the model. Artificial
+                    Potential Fields (APFs') is obstacle avoidance and
+                    drone separation, producing smooth, collision free
+                    paths validated through hardware testing. Formation is
+                    managed with multiple route models with aid of LIDAR and visual
+                    data for awareeness of its surrondings.
+                </p>
+
+                <h3>Search Algorithms</h3>
+                <p>
+                    Four search patterns were implemented and evaluated against
+                    area coverage, completion time, estimated energy
+                    consumption, and redundant coverage:
+                </p>
                 <ul>
                     <li>
-                        Series drone positioning for ultra long range search
-                        distances across difficult terrain
+                        <strong>Expanding Square</strong>  ~80% coverage with
+                        fast completion time, best balance of speed and thoroughness.
+                        Top-performing algorithm in simulations.
                     </li>
                     <li>
-                        Automatic takeoff and landing based on flight status and
-                        individual node health monitoring
+                        <strong>Random Walk</strong> had faster completion but
+                        uneven coverage. basically it highlights speed over consistency.
                     </li>
                     <li>
-                        Affordable and easy-to-deploy system designed for first
-                        responders with minimal complex background knowledge
-                        needed
+                        <strong>Lawnmower</strong> had high coverage but slower
+                        due to systematic back and forth sweeping.
                     </li>
                     <li>
-                        Under 249g FAA drone launch weight regulations for
-                        unrestricted deployment
-                    </li>
-                    <li>
-                        ML-enhanced thermal imaging for detecting heat
-                        signatures in search and rescue operations
-                    </li>
-                    <li>
-                        Formation tracking algorithms to maintain swarm
-                        coordination during search patterns
+                        <strong>Spiral</strong> was effective for irregular or
+                        non uniform search areas. terrible at all other perfomance indicators.
                     </li>
                 </ul>
+                <p>
+                    The efficiency metric combined coverage, time, and energy
+                    use.
+                    <strong>Expanding Square achieved the best results</strong>,
+                    reaching ~80% coverage with relatively fast completion time,
+                    balancing speed and thoroughness.
+                </p>
+
+                <h3>Technical Details</h3>
+                <ul>
+                    <li>
+                        Leader-follower coordination with APF for collision free
+                        drone navigation
+                    </li>
+                    <li>
+                        At 150ft heat-seeking IR sensors has search resolution of 20x30m for air-to-ground heat
+                        signature detection
+                    </li>
+                    <li>
+                        Designed to operate under 249g to stay below FAA Part
+                        107 commercial regulations so no authorization required
+                        for deployment
+                    </li>
+                    <li>
+                        Follower Node: ~$80 (sensors + communication
+                        modules) - STILL WORKING ON FINALIZATION
+                    </li>
+                    <li>
+                        Leader Node: ~$200 (redundant communication modules +
+                        direct ground connection)
+                    </li>
+                    <li>
+                        Ground Node: ~$200 (powerful communication unit +
+                        direct connection to leader node)
+                    </li>
+                    <li>
+                        Search area boundary calculation using the Shoelace
+                        formula for complete path coverage
+                    </li>
+                    <li>Programmed in Python</li>
+                </ul>
+
+                <h3>Hardware Prototypes</h3>
 
                 <div class="demo-section">
-                    <h3>Development Progress</h3>
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20260413-qbkw.jpeg"
+                            alt="SWIFT leader"
+                            class="demo-image"
+                            style="width: 65%; height: auto"
+                            onerror="this.style.display='none'"
+                        />
+                        <p class="demo-caption">
+                            Full leader node prototype, custom quad with
+                            Raspberry Pi Pico flight controller, flight stack,
+                            GPS, and communication module. Pink propellers for
+                            visual identification during swarm testing.
+                        </p>
+                    </div>
+
+                    <div class="demo-wrapper">
+                        <img
+                            src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20260413-qbna.jpeg"
+                            alt="SWIFT micro follower drone prototype"
+                            class="demo-image"
+                            style="width: 65%; height: auto"
+                            onerror="this.style.display='none'"
+                        />
+                        <p class="demo-caption">
+
+                            A smaller form factor quad designed to reach into
+                            tight or confined spaces that leader nodes cannot
+                            access. Red coloured 3D-printed frame keeps weight minimal.
+                        </p>
+                    </div>
+
                     <div class="demo-wrapper">
                         <img
                             src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251230-btaw.png"
-                            alt="SWIFT Desktop Application"
+                            alt="SWIFT desktop application for mission planning"
                             class="demo-image"
                             style="width: 50%; height: auto"
+                            onerror="this.style.display='none'"
                         />
                         <p class="demo-caption">
-                            Prototype of search software - desktop application
-                            for mission planning
+                            Desktop application for mission planning and swarm
+                            coordination — operators define search areas, assign
+                            search patterns, and monitor individual node health.
                         </p>
                     </div>
 
                     <div class="demo-wrapper">
                         <img
                             src="https://raw.githubusercontent.com/georgemonkey/parth_website/main/assets/SCR-20251230-btkr.png"
-                            alt="Search Algorithm Visualization"
+                            alt="Search algorithm area coverage visualization"
                             class="demo-image"
                             style="width: 50%; height: auto"
+                            onerror="this.style.display='none'"
                         />
                         <p class="demo-caption">
-                            Prototype of general search algorithm based on given
-                            area using shoelace theory to make sure the swarm
-                            doesnt miss a spot - sort of like a roomby!!
+                            Shoelace-formula area coverage visualization —
+                            ensures the swarm doesn't miss a spot during search.
+                            Kind of like a Roomba, but for disaster recovery.
                         </p>
                     </div>
                 </div>
 
-                <h3>Current Status</h3>
+                <h3>Results</h3>
                 <ul>
                     <li>
-                        Desktop application for mission planning and swarm
-                        coordination is functional in testing environment
+                        APF + leader-follower control enabled efficient,
+                        collision-free navigation and reduced redundant movement
                     </li>
                     <li>
-                        Search algorithm using shoelace theory for area coverage
-                        calculation has been implemented.
+                        Expanding Square achieved ~80% area coverage in
+                        simulations with low time and energy cost
                     </li>
                     <li>
-                        Working on formation tracking algorithms to maintain
-                        swarm cohesion(how tight they stay together) during
-                        search patterns
+                        System validated through hardware testing on a low-cost
+                        quadcopter prototype with 3D-printed frame and
+                        lithium-polymer battery
                     </li>
                     <li>
-                        Preparing for WSSEF presentation with the demostration
-                        of a live swarm autonomous programming route.
+                        Simulation ran to 80% area coverage OR until battery
+                        dropped to the RTH threshold
                     </li>
                 </ul>
 
-                <h3>Current Technical Details</h3>
+                <h3>Limitations & Future Work</h3>
                 <ul>
                     <li>
-                        Uses shoelace formula to calculate search area
-                        boundaries and optimize flight paths for complete
-                        coverage
+                        <strong>Sensor accuracy</strong> — IR detects heat but
+                        can't distinguish vehicles from people; future work will
+                        integrate ML with LIDAR + computer vision for better
+                        target classification
                     </li>
                     <li>
-                        3.5x4in heat seeking sensors for air to ground heat
-                        signature detection
+                        <strong>Wireless dependence</strong> — leader-follower
+                        relies on stable comms; future versions will explore
+                        decentralized swarm intelligence so each node can act on
+                        local observations alone
                     </li>
                     <li>
-                        Each node approximate cost of 80$, including sensors and
-                        communication modules.
+                        <strong>Scale validation</strong> — tested with a single
+                        follower drone using manual inputs; a full multi-drone
+                        hardware test is needed to fully evaluate APF and
+                        formation coordination at scale
                     </li>
                     <li>
-                        Base station approximate cost of 200$, this includes
-                        redundant communication modules and direct connection
-                        with the ground operators computer.
+                        <strong>Adaptive hybrid search</strong> — a dynamic
+                        algorithm that switches patterns based on real-time
+                        coverage density (e.g., lawnmower + random walk) to
+                        reduce redundancy in partially explored areas
                     </li>
                     <li>
-                        Designed to operate under 249g to avoid Part 107
-                        commercial drone regulations and enable fastest
-                        deployment without authorization from the FAA.
+                        <strong>ML target recognition</strong> — integrate
+                        computer vision + LIDAR fusion to classify detected
+                        objects and distinguish people from environmental noise
                     </li>
-                    <li>Programmed in Python</li>
                 </ul>
             </div>
         </div>
