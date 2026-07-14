@@ -27,12 +27,22 @@
 <body class="home">
 
 <div id="loader">
-    <div class="loader-logo">P</div>
+    <div class="loader-grid">
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+        <div class="piece"></div>
+    </div>
 </div>
 
 <header>
 
-<nav>
+<nav id="nav">
 
 <a class="logo"
    href="/">
@@ -41,11 +51,21 @@ Parth
 
 <div class="nav-links">
 
-<a href="#projects">Projects</a>
+<a href="#hero"
+   class="nav-item active"
+   data-section="hero">Home</a>
 
-<a href="#about">About</a>
+<a href="#projects"
+   class="nav-item"
+   data-section="projects">Projects</a>
 
-<a href="#contact">Contact</a>
+<a href="#about"
+   class="nav-item"
+   data-section="about">About</a>
+
+<a href="#contact"
+   class="nav-item"
+   data-section="contact">Contact</a>
 
 </div>
 
@@ -153,11 +173,14 @@ Contact
 
 </h2>
 
-<a href="mailto:parth.amradkar@gmail.com">
+<p>
 
-parth.amradkar@gmail.com
+email:
+<a href="mailto:parth.amradkar@gmail.com"
+   id="copy-email"
+   data-email="parth.amradkar@gmail.com">parth.amradkar@gmail.com</a>
 
-</a>
+</p>
 
 </div>
 

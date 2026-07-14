@@ -38,6 +38,10 @@
           "bottom"        → keeps the bottom visible
           "30% 70%"       → precise horizontal% vertical%
         Just nudge the numbers and refresh until it looks right.
+      - Tags are plain grey pills by default. To make one stand out
+        (like an "in progress" flag), use an object instead of a
+        string: { label: "in progress", variant: "yellow" }.
+        Variants: "yellow" (WIP), "green", "blue".
 
    ── TEMPLATE (copy from here) ──────────────────────────────────────
 

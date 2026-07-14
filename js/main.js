@@ -7,23 +7,40 @@ document.addEventListener("DOMContentLoaded", () => {
     renderFeatured();
     renderGrid();
     initReveal();
+    initHeroParallax();
+    initCopyEmail();
 });
 
-window.addEventListener("load", hideLoader);
+window.addEventListener("load", runLoader);
 
-/* fallback: never let the loader hang more than 2.5s */
-setTimeout(hideLoader, 2500);
-
-function hideLoader() {
+function runLoader() {
     const loader = document.getElementById("loader");
-    if (!loader || loader.classList.contains("loader-hidden")) return;
-    loader.classList.add("loader-hidden");
-    setTimeout(() => loader.remove(), 600);
+    if (!loader || loader.dataset.done) return;
+    loader.dataset.done = "1";
+
+    const pieces = loader.querySelectorAll(".piece");
+    pieces.forEach((piece, i) => {
+        setTimeout(() => piece.classList.add("in"), i * 40);
+    });
+
+    setTimeout(() => {
+        loader.classList.add("loader-hidden");
+        setTimeout(() => loader.remove(), 600);
+    }, pieces.length * 40 + 300);
 }
 
+/* fallback: never let the loader hang more than 2.5s */
+setTimeout(runLoader, 2500);
+
+/* tags accept a plain string (default grey pill) or
+   {label, variant} for a colored one, e.g. {label:"in progress", variant:"yellow"} */
 function tagChips(tags = []) {
     return `<div class="project-tags">${
-        tags.map(t => `<span class="tag blue">${t}</span>`).join("")
+        tags.map(t => {
+            const label   = typeof t === "string" ? t : t.label;
+            const variant = typeof t === "string" ? "" : (t.variant ?? "");
+            return `<span class="tag ${variant}">${label}</span>`;
+        }).join("")
     }</div>`;
 }
 
@@ -85,4 +102,37 @@ function initReveal() {
         });
     }, { threshold: 0.1 });
     els.forEach(el => io.observe(el));
+}
+
+/* hero drifts up and fades slightly as you scroll past it, like the old site */
+function initHeroParallax() {
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const y = window.scrollY;
+            hero.style.transform = `translateY(${y * 0.3}px)`;
+            hero.style.opacity = Math.max(0, 1 - y / 800);
+            ticking = false;
+        });
+    }, { passive: true });
+}
+
+/* click the contact email to copy it instead of opening a mail client */
+function initCopyEmail() {
+    const link = document.getElementById("copy-email");
+    if (!link) return;
+
+    const original = link.textContent;
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        navigator.clipboard.writeText(link.dataset.email || original).then(() => {
+            link.textContent = "copied";
+            setTimeout(() => { link.textContent = original; }, 2000);
+        });
+    });
 }

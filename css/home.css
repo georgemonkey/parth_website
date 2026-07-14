@@ -376,7 +376,7 @@
 
 
 /* =====================================================================
-   OLD-SITE MINIMAL THEME
+   OLD-SITE THEME
    Scoped entirely to body.home (the home page). Never touches
    style.css or project.css, so project.html keeps its own look.
 ===================================================================== */
@@ -385,11 +385,15 @@ body.home {
 
     text-transform: lowercase;
 
+    background: #000;
+
 }
 
+/* top-level section titles stay thin (300); card/content headings
+   inside them stay readable weights, matching the old site exactly */
+
 body.home h1,
-body.home h2,
-body.home h3 {
+body.home h2 {
 
     font-weight: 300;
 
@@ -397,12 +401,68 @@ body.home h3 {
 
 body.home #hero p {
 
-    color: var(--text-muted);
+    color: #888;
 
 }
 
 
-/* ---- nav: plain bar instead of the glass pill ---- */
+/* ---- full-screen section rhythm, like the old one-screen-per-section feel ---- */
+
+body.home #projects,
+body.home #about,
+body.home #contact {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+/* ---- loader: 3x3 grid of pieces scaling in, like the old site ---- */
+
+.loader-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 60px);
+
+    gap: 10px;
+
+}
+
+.loader-grid .piece {
+
+    width: 60px;
+
+    height: 60px;
+
+    background: #fff;
+
+    opacity: 0;
+
+    border-radius: 4px;
+
+    transform: scale(.2) rotate(-30deg);
+
+    transition: all .5s ease-out;
+
+}
+
+.loader-grid .piece.in {
+
+    opacity: 1;
+
+    transform: scale(1) rotate(0deg);
+
+}
+
+
+/* ---- nav: plain bar instead of the glass pill, active-section tracking ---- */
 
 body.home nav {
 
@@ -422,6 +482,8 @@ body.home nav {
 
     padding: 22px 30px;
 
+    transition: transform .3s;
+
 }
 
 body.home .logo {
@@ -440,8 +502,14 @@ body.home .nav-links a {
 
 }
 
+body.home .nav-links a.active {
 
-/* ---- hero CTA: ghost button + old-style bouncing arrow ---- */
+    color: #fff;
+
+}
+
+
+/* ---- hero: parallax fade handled in JS; ghost CTA + bouncing arrow here ---- */
 
 body.home .primary-button {
 
@@ -503,6 +571,8 @@ body.home .scroll-arrow {
 
     animation: arrowBounce 1.6s infinite;
 
+    filter: drop-shadow(0 0 6px rgba(156, 188, 255, .5));
+
 }
 
 @keyframes arrowBounce {
@@ -514,25 +584,46 @@ body.home .scroll-arrow {
 }
 
 
-/* ---- cards: subtler lift, plain dark tags like the old site ---- */
+/* ---- cards: plain black, subtler lift, old-style dark tags ---- */
+
+body.home .project-card,
+body.home .featured-card {
+
+    background: #000;
+
+}
+
+body.home .project-card h3,
+body.home .featured-content h3 {
+
+    font-weight: 500;
+
+}
 
 body.home .project-card:hover,
 body.home .featured-card:hover {
 
     transform: translateY(-2px);
 
-    border-color: #333;
+    border-color: #444;
 
 }
 
-body.home .tag,
-body.home .tag.blue {
+/* default tag = plain grey pill like the old site. Colored variants
+   (tag.yellow / tag.green / tag.blue) keep their accent colors so you
+   can still flag things like "in progress" — see projects.js template */
+
+body.home .tag:not(.yellow):not(.green):not(.blue) {
 
     background: #111;
 
     color: #666;
 
     border: 1px solid #1a1a1a;
+
+}
+
+body.home .tag {
 
     border-radius: 6px;
 
@@ -553,5 +644,39 @@ body.home .section-title p {
 body.home .featured-label {
 
     color: #9cbcff;
+
+}
+
+
+/* ---- about / contact: match old spacing + copy-to-clipboard feedback ---- */
+
+body.home #about p,
+body.home #contact p {
+
+    color: #aaa;
+
+    line-height: 1.8;
+
+    font-size: 1.1rem;
+
+}
+
+body.home #contact a {
+
+    color: #fff;
+
+    font-weight: 400;
+
+    border-bottom: 1px solid #333;
+
+    padding-bottom: 2px;
+
+}
+
+body.home #contact a:hover {
+
+    border-bottom-color: #fff;
+
+    color: #fff;
 
 }
