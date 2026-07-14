@@ -1,0 +1,69 @@
+/* ===========================
+   LOADER
+=========================== */
+
+#loader {
+
+    transition: opacity .5s ease;
+
+}
+
+#loader.loader-hidden {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+.loader-logo {
+
+    animation: pulse 1.2s ease-in-out infinite;
+
+}
+
+@keyframes pulse {
+
+    0%, 100% { opacity: 1; }
+
+    50%      { opacity: .35; }
+
+}
+
+
+/* ===========================
+   SCROLL REVEAL
+=========================== */
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(24px);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+
+}
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+/* ===========================
+   NAVBAR SCROLL STATE
+=========================== */
+
+nav.scrolled {
+
+    background: rgba(5, 5, 5, .85);
+
+    border-color: rgba(255, 255, 255, .1);
+
+}
