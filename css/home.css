@@ -28,7 +28,7 @@
 
 #hero h1 span {
 
-    color: var(--accent);
+    color: var(--text);
 
 }
 
@@ -219,6 +219,31 @@
     object-fit: cover;
 
     border-radius: var(--radius-sm);
+
+}
+
+.card-thumb-empty {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #0d0d0d,
+            #0d0d0d 10px,
+            #101010 10px,
+            #101010 20px
+        );
+
+    color: var(--text-muted);
+
+    font-size: .9rem;
+
+    letter-spacing: .04em;
 
 }
 

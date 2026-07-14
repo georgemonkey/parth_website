@@ -293,6 +293,85 @@
 
 }
 
+/* related cards (project page doesn't load home.css, so style them here) */
+
+.related-grid .project-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 24px;
+
+    transition: var(--transition);
+
+}
+
+.related-grid .project-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #444;
+
+}
+
+.related-grid .project-card h3 {
+
+    font-size: 1.2rem;
+
+}
+
+.related-grid .project-card p {
+
+    font-size: .95rem;
+
+    color: var(--text-muted);
+
+}
+
+.related-grid .card-thumb {
+
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    object-fit: cover;
+
+    border-radius: var(--radius-sm);
+
+}
+
+.related-grid .card-thumb-empty {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #0d0d0d,
+            #0d0d0d 10px,
+            #101010 10px,
+            #101010 20px
+        );
+
+    color: var(--text-muted);
+
+    font-size: .9rem;
+
+}
+
 
 /* ===========================
    NOT FOUND

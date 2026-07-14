@@ -73,17 +73,23 @@ function renderGrid() {
 
     grid.innerHTML = PROJECTS.map(p => `
         <a class="project-card reveal" href="${projectUrl(p)}">
-            ${p.thumbnail
-                ? `<img class="card-thumb"
-                        src="${p.thumbnail}"
-                        alt="${p.title}"
-                        loading="lazy"
-                        style="object-position:${p.thumbnailPosition || "center"}">`
-                : ""}
+            ${cardThumb(p)}
             <h3>${p.title}</h3>
             <p>${p.tagline ?? ""}</p>
             ${tagChips(p.tags)}
         </a>`).join("");
+}
+
+/* cover image for a card — or a plain placeholder if there are no pics yet */
+function cardThumb(p) {
+    if (!p.thumbnail) {
+        return `<div class="card-thumb card-thumb-empty">pics coming soon</div>`;
+    }
+    return `<img class="card-thumb"
+                 src="${p.thumbnail}"
+                 alt="${p.title}"
+                 loading="lazy"
+                 style="object-position:${p.thumbnailPosition || "center"}">`;
 }
 
 /* scroll-reveal: elements with .reveal fade up when they enter view */

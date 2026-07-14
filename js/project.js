@@ -40,6 +40,14 @@ function paragraphs(text) {
     return arr.map(t => `<p>${t}</p>`).join("");
 }
 
+/* a tag can be a plain string OR {label, variant}. plain strings default
+   to the blue pill on the detail page; objects use their own variant. */
+function tagChip(t) {
+    const label   = typeof t === "string" ? t : t.label;
+    const variant = typeof t === "string" ? "blue" : (t.variant ?? "blue");
+    return `<span class="tag ${variant}">${label}</span>`;
+}
+
 function renderNotFound() {
     document.querySelector("main").innerHTML = `
         <section class="project-not-found">
@@ -55,7 +63,7 @@ function renderHero(p) {
     el("project-hero").innerHTML = `
         <div class="container">
             <div class="project-tags">
-                ${(p.tags ?? []).map(t => `<span class="tag blue">${t}</span>`).join("")}
+                ${(p.tags ?? []).map(tagChip).join("")}
             </div>
             <h1>${p.title}</h1>
             ${p.tagline ? `<p class="project-tagline">${p.tagline}</p>` : ""}
@@ -168,8 +176,9 @@ function renderRelated(p) {
                             ? `<img class="card-thumb"
                                     src="${r.thumbnail}"
                                     alt="${r.title}"
-                                    loading="lazy">`
-                            : ""}
+                                    loading="lazy"
+                                    style="object-position:${r.thumbnailPosition || "center"}">`
+                            : `<div class="card-thumb card-thumb-empty">pics coming soon</div>`}
                         <h3>${r.title}</h3>
                         <p>${r.tagline ?? ""}</p>
                     </a>`).join("")}
