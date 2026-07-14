@@ -26,6 +26,18 @@
       - To reference another project, just use its id in `related`.
       - Set `featured: true` on exactly ONE project for the big
         homepage card.
+      - `thumbnail` is the cover photo shown on the home card (and the
+        big featured card, if this is the featured one). Swap it any
+        time by pointing it at a different file in assets/.
+      - `thumbnailPosition` is optional — use it when the cover photo
+        gets cropped in a way you don't like (the card/featured image
+        is a fixed-aspect box, so a tall or off-center photo can get
+        cut off). Same syntax as CSS object-position:
+          "center"        → default, centers the photo
+          "top"           → keeps the top of the photo visible
+          "bottom"        → keeps the bottom visible
+          "30% 70%"       → precise horizontal% vertical%
+        Just nudge the numbers and refresh until it looks right.
 
    ── TEMPLATE (copy from here) ──────────────────────────────────────
 
@@ -35,6 +47,7 @@
        tagline: "One-line description shown on cards.",
        tags: ["Hardware", "Firmware"],
        thumbnail: "assets/myproject-photo1.jpg",
+       thumbnailPosition: "center",
        featured: false,
        overview: [
            "First paragraph about the project.",

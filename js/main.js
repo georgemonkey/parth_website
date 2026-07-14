@@ -39,7 +39,8 @@ function renderFeatured() {
             <img class="featured-image"
                  src="${p.thumbnail}"
                  alt="${p.title}"
-                 loading="lazy">
+                 loading="lazy"
+                 style="object-position:${p.thumbnailPosition || "center"}">
             <div class="featured-content">
                 <span class="featured-label">Featured Project</span>
                 <h3>${p.title}</h3>
@@ -59,7 +60,8 @@ function renderGrid() {
                 ? `<img class="card-thumb"
                         src="${p.thumbnail}"
                         alt="${p.title}"
-                        loading="lazy">`
+                        loading="lazy"
+                        style="object-position:${p.thumbnailPosition || "center"}">`
                 : ""}
             <h3>${p.title}</h3>
             <p>${p.tagline ?? ""}</p>

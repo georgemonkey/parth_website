@@ -373,3 +373,185 @@
     }
 
 }
+
+
+/* =====================================================================
+   OLD-SITE MINIMAL THEME
+   Scoped entirely to body.home (the home page). Never touches
+   style.css or project.css, so project.html keeps its own look.
+===================================================================== */
+
+body.home {
+
+    text-transform: lowercase;
+
+}
+
+body.home h1,
+body.home h2,
+body.home h3 {
+
+    font-weight: 300;
+
+}
+
+body.home #hero p {
+
+    color: var(--text-muted);
+
+}
+
+
+/* ---- nav: plain bar instead of the glass pill ---- */
+
+body.home nav {
+
+    background: transparent;
+
+    backdrop-filter: none;
+
+    border: none;
+
+    border-bottom: 1px solid var(--border);
+
+    border-radius: 0;
+
+    margin: 0;
+
+    width: 100%;
+
+    padding: 22px 30px;
+
+}
+
+body.home .logo {
+
+    text-transform: lowercase;
+
+    font-weight: 600;
+
+}
+
+body.home .nav-links a {
+
+    color: #888;
+
+    font-size: .95rem;
+
+}
+
+
+/* ---- hero CTA: ghost button + old-style bouncing arrow ---- */
+
+body.home .primary-button {
+
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    color: #9cbcff;
+
+    font-weight: 400;
+
+}
+
+body.home .primary-button:hover {
+
+    background: transparent;
+
+    border-color: #9cbcff;
+
+    transform: translateY(-2px);
+
+}
+
+body.home .scroll-indicator {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 46px;
+
+    color: #9cbcff;
+
+}
+
+body.home .scroll-indicator span {
+
+    font-size: .85rem;
+
+    letter-spacing: .08em;
+
+}
+
+body.home .scroll-arrow {
+
+    width: 10px;
+
+    height: 10px;
+
+    border-right: 2px solid #9cbcff;
+
+    border-bottom: 2px solid #9cbcff;
+
+    transform: rotate(45deg);
+
+    animation: arrowBounce 1.6s infinite;
+
+}
+
+@keyframes arrowBounce {
+
+    0%, 100% { transform: rotate(45deg) translateY(0); opacity: .6; }
+
+    50%      { transform: rotate(45deg) translateY(6px); opacity: 1; }
+
+}
+
+
+/* ---- cards: subtler lift, plain dark tags like the old site ---- */
+
+body.home .project-card:hover,
+body.home .featured-card:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #333;
+
+}
+
+body.home .tag,
+body.home .tag.blue {
+
+    background: #111;
+
+    color: #666;
+
+    border: 1px solid #1a1a1a;
+
+    border-radius: 6px;
+
+    padding: .4rem 1rem;
+
+    font-size: .8rem;
+
+}
+
+body.home .project-card p,
+body.home .featured-content p,
+body.home .section-title p {
+
+    color: #888;
+
+}
+
+body.home .featured-label {
+
+    color: #9cbcff;
+
+}
