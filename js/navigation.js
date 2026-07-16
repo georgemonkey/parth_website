@@ -13,6 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
+    const toggle = document.getElementById("nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    if (toggle && navLinks) {
+        toggle.addEventListener("click", () => {
+            const open = navLinks.classList.toggle("open");
+            toggle.classList.toggle("open", open);
+            toggle.setAttribute("aria-expanded", String(open));
+        });
+        navLinks.querySelectorAll("a").forEach(a => {
+            a.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                toggle.classList.remove("open");
+                toggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+
     const links = [...document.querySelectorAll(".nav-item[data-section]")];
     if (!links.length) return;
 

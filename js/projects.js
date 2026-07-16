@@ -94,6 +94,7 @@ const PROJECTS = [
         tagline: "small 3d-printed rocket that actually got off the pad.",
         tags: ["rocketry", "3d printing", "avionics"],
         thumbnail: "assets/bobo-nose-h.jpg",
+        featured: true,
         overview: [
             "bobo is my first rocket that actually flew. it's a little bt50 — nose cone, fin can, body tube and avionics bay are all 3d printed. i printed my name into the coupler too, which does nothing, but i like it.",
             "the av bay slides out of the body so i can get at the electronics. the whole thing is small enough to hand-launch off a normal pad, which is kind of the point for now — i'm using it to actually learn how rockets behave before i do anything fancier.",
@@ -241,7 +242,6 @@ const PROJECTS = [
         tagline: "low-cost search-and-rescue drone swarm.",
         tags: ["drones", "swarms", "python", "ml"],
         thumbnail: "assets/swift-finishedbuild.jpeg",
-        featured: true,
         overview: [
             "swift is a search-and-rescue drone project i did with two friends. the idea is a swarm of cheap drones — under about $200 each — that cover a search area together instead of relying on one expensive one. one drone acts as the leader and does the path planning, and the rest just hold formation off it.",
             "we took it to wssef (the washington state science and engineering fair) and it ended up placing first in engineering, which was cool. it's open source.",

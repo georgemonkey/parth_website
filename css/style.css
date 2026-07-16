@@ -14,8 +14,8 @@
     --text-secondary: #b5b5b5;
     --text-muted: #707070;
 
-    --accent: #5ea3ff;
-    --accent-hover: #7db6ff;
+    --accent: #51eb11;
+    --accent-hover: #6bf52f;
 
     --success: #54d26d;
     --warning: #ffcb4c;
@@ -256,7 +256,7 @@ strong{
 
     background:var(--accent);
 
-    color:white;
+    color:#08210a;
 
     transition:var(--transition);
 
@@ -267,8 +267,6 @@ strong{
 .primary-button:hover{
 
     background:var(--accent-hover);
-
-    transform:translateY(-2px);
 
 }
 
@@ -315,9 +313,9 @@ header{
 
 nav{
 
-    width:min(94%,1250px);
+    position:relative;
 
-    margin:20px auto;
+    width:100%;
 
     display:flex;
 
@@ -325,15 +323,11 @@ nav{
 
     align-items:center;
 
-    padding:18px 30px;
+    padding:22px 30px;
 
-    border-radius:18px;
+    background:transparent;
 
-    backdrop-filter:blur(18px);
-
-    background:rgba(10,10,10,.65);
-
-    border:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid var(--border);
 
 }
 
@@ -367,6 +361,50 @@ nav{
 
 }
 
+#nav-toggle{
+
+    display:none;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:5px;
+
+    width:32px;
+
+    height:32px;
+
+    background:transparent;
+
+}
+
+#nav-toggle span{
+
+    display:block;
+
+    width:100%;
+
+    height:2px;
+
+    background:var(--text);
+
+    transition:var(--transition);
+
+}
+
+#nav-toggle.open span:first-child{
+
+    transform:translateY(3.5px) rotate(45deg);
+
+}
+
+#nav-toggle.open span:last-child{
+
+    transform:translateY(-3.5px) rotate(-45deg);
+
+}
+
 
 /* ===========================
    CARDS
@@ -387,8 +425,6 @@ nav{
 }
 
 .card:hover{
-
-    transform:translateY(-8px);
 
     border-color:#444;
 
@@ -443,7 +479,7 @@ nav{
 
 .tag.blue{
 
-    background:rgba(94,163,255,.12);
+    background:rgba(81,235,17,.12);
 
     color:var(--accent);
 
@@ -573,9 +609,49 @@ footer p{
 
 @media(max-width:700px){
 
+    #nav-toggle{
+
+        display:flex;
+
+    }
+
     .nav-links{
 
-        display:none;
+        position:absolute;
+
+        top:calc(100% + 1px);
+
+        left:0;
+
+        right:0;
+
+        flex-direction:column;
+
+        gap:0;
+
+        background:var(--bg);
+
+        border-bottom:1px solid var(--border);
+
+        max-height:0;
+
+        overflow:hidden;
+
+        transition:max-height .3s ease;
+
+    }
+
+    .nav-links.open{
+
+        max-height:300px;
+
+    }
+
+    .nav-links a{
+
+        padding:16px 30px;
+
+        border-top:1px solid var(--border);
 
     }
 

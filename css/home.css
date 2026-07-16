@@ -69,15 +69,11 @@
 
     width: min(100%, 1000px);
 
-    background: linear-gradient(
-        145deg,
-        #0d0d0d,
-        #111
-    );
+    background: var(--surface);
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius);
 
     overflow: hidden;
 
@@ -90,8 +86,6 @@
 }
 
 .featured-card:hover {
-
-    transform: translateY(-6px);
 
     border-color: #333;
 
@@ -180,8 +174,6 @@
 
 .project-card:hover {
 
-    transform: translateY(-8px);
-
     border-color: #444;
 
 }
@@ -256,10 +248,6 @@
     font-size: .85rem;
 
     font-weight: 600;
-
-    text-transform: uppercase;
-
-    letter-spacing: .1em;
 
     margin-bottom: 14px;
 
@@ -487,29 +475,8 @@ body.home #contact {
 }
 
 
-/* ---- nav: plain bar instead of the glass pill, active-section tracking ---- */
-
-body.home nav {
-
-    background: transparent;
-
-    backdrop-filter: none;
-
-    border: none;
-
-    border-bottom: 1px solid var(--border);
-
-    border-radius: 0;
-
-    margin: 0;
-
-    width: 100%;
-
-    padding: 22px 30px;
-
-    transition: transform .3s;
-
-}
+/* ---- nav: active-section highlight is the only home-specific bit,
+   the bar itself now matches style.css's base nav everywhere ---- */
 
 body.home .logo {
 
@@ -542,7 +509,7 @@ body.home .primary-button {
 
     border: 1px solid var(--border);
 
-    color: #9cbcff;
+    color: var(--accent);
 
     font-weight: 400;
 
@@ -552,9 +519,7 @@ body.home .primary-button:hover {
 
     background: transparent;
 
-    border-color: #9cbcff;
-
-    transform: translateY(-2px);
+    border-color: var(--accent);
 
 }
 
@@ -570,7 +535,7 @@ body.home .scroll-indicator {
 
     margin-top: 46px;
 
-    color: #9cbcff;
+    color: var(--text-muted);
 
 }
 
@@ -588,15 +553,13 @@ body.home .scroll-arrow {
 
     height: 10px;
 
-    border-right: 2px solid #9cbcff;
+    border-right: 2px solid var(--text-muted);
 
-    border-bottom: 2px solid #9cbcff;
+    border-bottom: 2px solid var(--text-muted);
 
     transform: rotate(45deg);
 
     animation: arrowBounce 1.6s infinite;
-
-    filter: drop-shadow(0 0 6px rgba(156, 188, 255, .5));
 
 }
 
@@ -627,8 +590,6 @@ body.home .featured-content h3 {
 
 body.home .project-card:hover,
 body.home .featured-card:hover {
-
-    transform: translateY(-2px);
 
     border-color: #444;
 
@@ -668,7 +629,7 @@ body.home .section-title p {
 
 body.home .featured-label {
 
-    color: #9cbcff;
+    color: var(--accent);
 
 }
 

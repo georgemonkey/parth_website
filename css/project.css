@@ -317,8 +317,6 @@
 
 .related-grid .project-card:hover {
 
-    transform: translateY(-4px);
-
     border-color: #444;
 
 }
@@ -503,5 +501,63 @@
     top: 50%;
 
     transform: translateY(-50%);
+
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 700px) {
+
+    #project-page section {
+
+        padding: 34px 0;
+
+    }
+
+    #project-hero {
+
+        padding-top: 60px;
+
+    }
+
+    .project-links {
+
+        margin-top: 22px;
+
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 1.2rem;
+
+    }
+
+    .lightbox-close {
+
+        top: 14px;
+
+        right: 14px;
+
+    }
+
+    .lightbox-prev {
+
+        left: 8px;
+
+    }
+
+    .lightbox-next {
+
+        right: 8px;
+
+    }
 
 }

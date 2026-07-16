@@ -11,12 +11,20 @@ document.addEventListener("DOMContentLoaded", () => {
     initCopyEmail();
 });
 
+/* the intro animation only plays once per visit — coming back from a
+   project page (or any other same-site navigation) shouldn't replay it */
 window.addEventListener("load", runLoader);
 
 function runLoader() {
     const loader = document.getElementById("loader");
     if (!loader || loader.dataset.done) return;
     loader.dataset.done = "1";
+
+    if (sessionStorage.getItem("introPlayed")) {
+        loader.remove();
+        return;
+    }
+    sessionStorage.setItem("introPlayed", "1");
 
     const pieces = loader.querySelectorAll(".piece");
     pieces.forEach((piece, i) => {
@@ -59,7 +67,7 @@ function renderFeatured() {
                  loading="lazy"
                  style="object-position:${p.thumbnailPosition || "center"}">
             <div class="featured-content">
-                <span class="featured-label">Featured Project</span>
+                <span class="featured-label">recent build</span>
                 <h3>${p.title}</h3>
                 <p>${p.tagline ?? ""}</p>
                 ${tagChips(p.tags)}
