@@ -91,20 +91,20 @@ const PROJECTS = [
     {
         id: "bobo",
         title: "bobo",
-        tagline: "small 3d-printed rocket that actually got off the pad.",
-        tags: ["rocketry", "3d printing", "avionics"],
+        tagline: "smaller size model rocket with electronic avionics",
+        tags: ["rocketry", "3d printing"],
         thumbnail: "assets/bobo-nose-h.jpg",
         featured: true,
         overview: [
-            "bobo is my first rocket that actually flew. it's a little bt50 — nose cone, fin can, body tube and avionics bay are all 3d printed. i printed my name into the coupler too, which does nothing, but i like it.",
-            "the av bay slides out of the body so i can get at the electronics. the whole thing is small enough to hand-launch off a normal pad, which is kind of the point for now — i'm using it to actually learn how rockets behave before i do anything fancier.",
+            "bobo is my first rocket that actually had some kind of life in it. it's a bt50 sized. nose cone, fins and avionics bay are all 3d printed. ",
+            "the av bay slides out of the nose cone so i can access the electronics. the whole thing is small enough use a ejection charge from the motor itself without using black powder which i was struggling to get my hands on. but it was the start of me learning how rockets work, what sections they need and flight parameters to dial in for teddy (my bigger rocket).",
         ],
         gallery: [
             { src: "assets/bobo-firstflight.mp4",     caption: "first flight" },
             { src: "assets/bobo-nose-h.jpg",          caption: "printed nose + body" },
-            { src: "assets/bobo-fins-front-h.jpg",    caption: "printed fin can" },
-            { src: "assets/bobo-avbay-front-h.jpg",   caption: "av bay — pico version" },
-            { src: "assets/bobo-avbay-back-v.jpg",    caption: "av bay internals (name's printed into the coupler)" },
+            { src: "assets/bobo-fins-front-h.jpg",    caption: "printed fin + motor case" },
+            { src: "assets/bobo-avbay-front-h.jpg",   caption: "av bay - pico version" },
+            { src: "assets/bobo-avbay-back-v.jpg",    caption: "av bay on its own" },
         ],
         features: [
             "fully 3d-printed airframe — nose, body, fin can, av bay",
@@ -112,18 +112,18 @@ const PROJECTS = [
             "small bt50, launches off a normal pad",
         ],
         development: [
-            { title: "v1 — first flight (pico)", text: "flew on a raspberry pi pico. the flight itself was fine, but power was the weak spot. the pico kept browning out, and i ended up heatshrinking the positive lead right there on the launchpad to keep it alive. worked, but it was janky." },
-            { title: "relaunch — esp32-c3 (in progress)", text: "moving the av bay onto a seeed studio xiao esp32-c3. i added an actual power button so i can arm it right before launch instead of fighting a loose wire, and a little led on the av-bay battery so i can just look and tell if it's on. need to get pics of this once it's built — this section's holding a spot for them." },
+            { title: "v1 — first flight (pico)", text: "flew on a raspberry pi pico. the flight itself was fine, but power was the weak spot. the pico kept browning out, and i ended up heatshrinking the positive lead right there on the launchpad to turn it on. worked, but it was def janky." },
+            { title: "relaunch — esp32-c3 (in progress)", text: "moving the av bay onto a seeed studio xiao esp32-c3. i added an actual power button so i can arm it right before launch instead of messing w a loose wire, and a little led on the av-bay battery so i can just look and tell if it's on." },
         ],
         technical: [
             { label: "class",              value: "bt50" },
             { label: "airframe",           value: "3d printed" },
-            { label: "avionics (v1)",      value: "raspberry pi pico" },
-            { label: "avionics (relaunch)",value: "seeed xiao esp32-c3" },
+            { label: "avionics (v1)",      value: "rpi pico" },
+            { label: "avionics (v2)",value: "seeed xiao esp32-c3" },
         ],
         future: [
-            "actually fly the esp32-c3 relaunch",
-            "onboard logging i can pull after a flight",
+            "actually fly the esp32-c3 version",
+            "onboard logging thats clean w rolling avg",
             "eventually air-launch it off the launch quad",
         ],
         related: ["teddy", "launchquad", "rocketsys"],
@@ -132,20 +132,20 @@ const PROJECTS = [
     {
         id: "teddy",
         title: "teddy",
-        tagline: "bigger rocket, still on the bench. no launch yet.",
-        tags: ["rocketry", { label: "in progress", variant: "yellow" }, "avionics"],
+        tagline: "bobos big brother",
+        tags: ["rocketry", { label: "in progress", variant: "yellow" },"3d printing"],
         overview: [
-            "teddy is the next one up from bobo — a bt80, so noticeably bigger. it's not flown yet, i'm still sorting out the av bay and what i actually want it to do.",
-            "right now it's running an esp32-c3 on an expansion board with an mpu6050 (the version with the temp sensor), powered off a 2s pack through a buck converter. i'm still going back and forth on whether to add tvc or just some control fins for roll — nothing's locked in. no pics yet, they'll go here as it comes together.",
+            "teddys bobos big brother, its still being built right now. im deciding on the control system. i can decide between tvc and roll control fins.",
+            "right now it's running an esp32-c3 on an expansion board with an mpu6050 (the version with the temp sensor), powered off a 2s pack through a mini 360 buck converter.",
         ],
         features: [
-            "bt80 airframe with its own av bay",
+            "bt80 airframe size",
             "esp32-c3 + mpu6050 (imu + temp)",
             "2s battery through a buck converter",
-            "maybe tvc, maybe roll control fins — still deciding",
+            "tvc or roll control fins",
         ],
         development: [
-            { title: "where it's at", text: "bench stage. electronics are mostly picked, airframe's coming together, no launch yet. i'll add photos as it turns into an actual rocket." },
+            { title: "whats going on right now", text: "still working on it. the av bay is mostly done and printed i just need to decide on tvc or fins. then i can start on the fin can and motor mount" },
         ],
         technical: [
             { label: "class",   value: "bt80" },
@@ -157,7 +157,8 @@ const PROJECTS = [
         future: [
             "decide tvc vs roll fins and build it",
             "first launch",
-            "eventually air-launch off the launch quad like bobo",
+            "air-launch like bobo",
+            "model different compounds of rocket propellant, potentially subsections"
         ],
         related: ["bobo", "launchquad", "rocketsys"],
     },
@@ -165,29 +166,29 @@ const PROJECTS = [
     {
         id: "launchquad",
         title: "launch quad",
-        tagline: "lift quad. built it, shelved it, came back to it.",
+        tagline: "bobo and teddys final test rig",
         tags: ["drones", "3d printing", "carbon fiber"],
         thumbnail: "assets/launchquad-final-h.jpg",
         overview: [
-            "this one had a weird timeline. i started it as a lifting quad and printed the first frame, got it mostly together, and then i actually took a long break from it — i sliced my pinky off working on it, which was not a great day, and while i was healing up i got into rockets instead.",
-            "once i was back i finished it off on a proper carbon frame. by then i was way more into the rocket side, so the launch quad kind of found a new job: it's meant to carry bobo and teddy up and air-launch them instead of launching everything off the ground.",
+            "this was my first major accident, i had cut my right pinky while working on the arming states during testing on the V1 frame. i took a long break from drones because i was scared of getting near props again. while i was healing i got into rockets.",
+            "once i was back i finished it off on a proper carbon frame. by then i was way more into the rocket side, so the launch quad kind of found a new job, it's meant to carry bobo and teddy up and air-launch them instead of launching everything off the ground.",
         ],
         gallery: [
-            { src: "assets/launchquad-final-h.jpg",  caption: "finished carbon build" },
+          
             { src: "assets/launchquad-final-v.jpg",  caption: "finished carbon build" },
             { src: "assets/launchquad-built.jpg",    caption: "the earlier 3d-printed frame" },
             { src: "assets/launchquad-assembly.jpg", caption: "assembly" },
             { src: "assets/launchquad-underside.jpg",caption: "underside" },
         ],
         features: [
-            "3d-printed prototype frame → final carbon build",
-            "meant to lift and air-launch small rockets",
+            "3d-printed prototype frame to final carbon build",
+            "meant to lift and air-launch small to large size rockets",
             "carbon frame on the finished version so it's lighter + stiffer",
         ],
         development: [
-            { title: "prototype — printed frame", text: "first version was a 3d-printed frame. it flew, but it was heavy and a bit flexy." },
-            { title: "the break", text: "sliced my pinky off working on it, so i stepped away for a while. ended up messing with rockets while i healed, which is basically how the whole rocket thing started." },
-            { title: "final — carbon", text: "came back and rebuilt it on a carbon frame. lighter, stiffer, and now it has an actual purpose — hauling bobo and teddy up for air launches." },
+            { title: "prototype — printed frame", text: "first version was a 3d-printed frame. it flew, but it was heavy and a bit flexy. this caused vibrations sent to the flight controller which ultimately caused my injury as the arming state were getting toggled." },
+            { title: "the break", text: "researched heavily on what had actually happened and how i could prevent it fropm happening again. " },
+            { title: "final — carbon", text: "once i felt comfortable again i had worked on rockets and had an idea to create a method of launching them higher in the atmosphere to reduce overall launch fuel required and higher altiude with minimized fuel weight." },
         ],
         technical: [
             { label: "frame (final)", value: "carbon fiber" },
@@ -451,6 +452,7 @@ const PROJECTS = [
             { label: "github", url: "https://github.com/georgemonkey/chameleon-hackathon" },
         ],
     },
+    
 
 ];
 
