@@ -209,8 +209,8 @@ const PROJECTS = [
         tags: ["rocketry", "mechanisms", { label: "in progress", variant: "yellow" }],
         thumbnail: "assets/rocketsys-latched.jpg",
         overview: [
-            "rl-sys is the part that lets the launch quad carry a rocket and let it go. it's a latch with its own little control board — it holds bobo or teddy underneath, then releases on command mid-air so the rocket lights and flies off the quad instead of off a pad.",
-            "this is still early. i'm mostly learning how all of it should work by flying bobo and teddy off the ground first, and rl-sys will come together as i actually get there. leaving room here for more photos and the control code once it's further along.",
+            "rl-sys is the part of the system that allows the rocket to be carried and released off the launching system. right now ive adapeted it for a drone. but it can be variated for almost anything.",
+            "rl-sys is very early in its development as i need to finish building rockets to understand what components it needs from the drone or the launch pad to send and verify w the rocket before actually adding pogo pins and/or pneuamtic releases for internal gases.",
         ],
         gallery: [
             { src: "assets/rocketsys-latched.jpg",      caption: "latched" },
@@ -219,20 +219,20 @@ const PROJECTS = [
             { src: "assets/rocketsys-controlboard.jpg", caption: "control board" },
         ],
         features: [
-            "latching hold-and-release for a rocket",
+            "latching hold-and-release for a rocket or payload",
             "custom control board",
-            "meant to mount under the launch quad",
+            "can be mounted on any launch vehicle",
         ],
         development: [
-            { title: "where it's at", text: "the mechanism and the board work on the bench. i haven't done a real air launch with it yet — that's the whole point, i'm just building up to it with ground launches first." },
+            { title: "progress", text: "the mechanism and the board work on the havent gone up on the launch quad yet. ive tested by dropping it from my balcony and it works very well. some potential design changes could be to improve the interaction the lever has before it completely loses contact with the rocket or payload." },
         ],
         technical: [
             { label: "type",    value: "latch + release" },
             { label: "control", value: "custom board" },
         ],
         future: [
-            "more photos + the release code as it comes together",
-            "first real air launch off the launch quad",
+            "more photos of it after i finalize requirements",
+            "real air launch off the launch quad",
         ],
         related: ["launchquad", "bobo", "teddy"],
     },
@@ -241,11 +241,11 @@ const PROJECTS = [
         id: "swift",
         title: "swift",
         tagline: "low-cost search-and-rescue drone swarm.",
-        tags: ["drones", "swarms", "python", "ml"],
+        tags: ["drones", "swarms", "python", "ml", "winner"],
         thumbnail: "assets/swift-finishedbuild.jpeg",
         overview: [
-            "swift is a search-and-rescue drone project i did with two friends. the idea is a swarm of cheap drones — under about $200 each — that cover a search area together instead of relying on one expensive one. one drone acts as the leader and does the path planning, and the rest just hold formation off it.",
-            "we took it to wssef (the washington state science and engineering fair) and it ended up placing first in engineering, which was cool. it's open source.",
+            "swift is a search-and-rescue (SAR) drone project i did with two friends. the idea is a swarm of cheap drones, under about $200 each. That cover a search area together instead of relying on one expensive one. one drone acts as the leader and does the path planning, and the rest just hold formation off it.",
+            "we took it to crsef and wssef (the washington state science and engineering fair) and it ended up placing first in engineering, which was exciting for us and motivated me. it's all open source.",
         ],
         gallery: [
             { src: "assets/swift-finishedbuild.jpeg", caption: "leader node" },
@@ -256,15 +256,17 @@ const PROJECTS = [
             { src: "assets/swift-trifold.jpg",        caption: "the fair board" },
         ],
         features: [
-            "leader-follower setup — one drone plans, the rest follow",
-            "artificial potential fields for spacing + obstacle avoidance so they don't hit each other",
+            "leader-follower setup so one drone plans, the rest follow",
+            "artificial potential fields for spacing + obstacle avoidance so they don't hit each other basically magnet repulsion",
             "four search patterns tested (expanding square came out best)",
             "ir sensing to pick up heat signatures from the air",
             "kept under 249g so it stays clear of faa part 107",
             "desktop app to draw the search area and watch each drone",
+            "complete simulation of the paths before deployment",
+            "fully open source with easy to access api's"
         ],
         development: [
-            { title: "search patterns", text: "tried expanding square, random walk, lawnmower, and spiral against coverage, time and battery. expanding square won on balance — around 80% coverage without eating too much time or battery. spiral was good for weird-shaped areas and kind of bad at everything else." },
+            { title: "search patterns", text: "tried expanding square, random walk, lawnmower, and spiral against coverage, time and battery. expanding square won on balance with around 80% coverage without eating too much time or battery. spiral was good for weird-shaped areas and kind of bad at everything else." },
         ],
         technical: [
             { label: "coordination", value: "leader–follower + apf" },
@@ -274,7 +276,7 @@ const PROJECTS = [
             { label: "cost",         value: "~$200 / drone" },
         ],
         future: [
-            "ir tells you something's warm but not what it is — want to add vision + lidar so it can tell a person from a car",
+            "ir tells you something's warm but not what it is we want to add vision + lidar so it can tell a person from a car",
             "right now it leans hard on the leader; would like the drones thinking more on their own",
             "only tested with one follower so far, needs a real multi-drone run",
         ],
@@ -291,27 +293,28 @@ const PROJECTS = [
         tags: ["drones", "firmware", "python", "embedded"],
         thumbnail: "assets/ardms-testrig.jpeg",
         overview: [
-            "ardms is firmware i wrote so my drones can fly autonomous routes without needing the big flight stacks like ardupilot or inav. i actually started it because am32 firmware got hard to get in the us for a while and i still wanted to keep flying. it's meant to be simple — it talks to betaflight and its forks, does mosfet-based esc control, and calibrates its own pid loops.",
-            "the pid calibration is the part i like. you strap the drone down and it runs each axis, measures the power curves, and works out p/i/d from that instead of me guessing. gps waypoints are just simple line-following between points.",
-            "i first tested it on a 5-inch quad — that's what's in most of these pics. i moved off that one for the launch quad build, but the launch quad wasn't really nimble enough to test firmware on, so i built the test quad specifically to beat on ardms.",
+            "ardms is firmware i wrote so my drones can fly autonomous routes without needing the big flight stacks like ardupilot or inav. i actually started it because am32 firmware got hard to get in the us for a while and i still wanted to keep flying. it's meant to be super duper simple, it talks to betaflight and its forks, does mosfet-based esc control, and calibrates its own pid loops.",
+            "the pid calibration is the part i like the most. you strap the drone down and it runs each axis, measures the power curves, and works out p, i and d from that instead of me guessing. gps waypoints are just simple line-following between points.",
+            "i first tested it on a 5-inch quad, that's what's in most of these pics. i had to extract the 5in frame and its parts for the launch quad project, so i built the test quad specifically to test on ardms. it also gave me a bunch of aggresive power curves to try on without harming my expensive parts",
         ],
         gallery: [
             { src: "assets/ardms-testrig.jpeg", caption: "test rig" },
             { src: "assets/ardms-mosfet.jpeg",  caption: "mosfet switching" },
-            { src: "assets/ardms-fctest.mp4",   caption: "flight controller test" },
+            { src: "assets/ardms-fctest.mp4",   caption: "fc+betaflight fork testing" },
         ],
         features: [
             "autonomous routes off a gps module",
-            "auto pid calibration by measuring power curves on a strapped-down drone",
+            "auto pid calibration by measuring power curves on a strapped down drone",
             "talks to betaflight + its forks",
             "mosfet-based esc control",
             "full-duplex serial so there's bandwidth for dshot",
+            "fully opensource"
         ],
         technical: [
             { label: "language",    value: "python" },
-            { label: "esc control", value: "mosfet + dshot" },
+            { label: "esc control", value: "mosfet manipulation + dshot" },
             { label: "boards",      value: "am32 / f405" },
-            { label: "comms",       value: "betaflight-compatible" },
+            { label: "link",       value: "betaflight-compatible" },
         ],
         related: ["testquad", "launchquad"],
     },
@@ -319,23 +322,23 @@ const PROJECTS = [
     {
         id: "testquad",
         title: "test quad",
-        tagline: "carbon quad i built just to beat on ardms.",
+        tagline: "custom carbon quad i built just to test ardms.",
         tags: ["drones", "carbon fiber", "testing"],
         thumbnail: "assets/testquad-carbonframe.jpg",
         overview: [
-            "the test quad exists for one reason — testing ardms without risking anything nicer. the original ardms drone was a 5-inch quad i moved away from, and the launch quad was too big and not nimble enough to actually test firmware on. so this is a plain carbon-frame quad i can crash and not really care.",
+            "this quad exists purely for testing on ardms and for fun. i had tons of fun 3d printing and desiging the frame over and over again while i tested in using fusions dynamic stress tools. then once i had tested a frame over and over again in sims i had printed it then tested it with bunch of live testing via loadcells and motor vibration to imu tests. i had decided i wanted to manufacture my first piece of carbon fiber. this was the first piece, i learnt a lot in manufacturing and the tooling of it. i loved the final result and how simple it was. it was a good winter break project.",
         ],
         gallery: [
             { src: "assets/testquad-carbonframe.jpg", caption: "bare carbon frame" },
             { src: "assets/testquad-assembly.jpg",    caption: "assembly" },
         ],
         features: [
-            "carbon frame, nothing precious on it",
-            "dedicated ardms testbed",
-            "cheap to fix when the firmware does something dumb",
+            "custom carbon frame",
+            "dedicated testbed",
+            "much less expensive to fix when the firmware does something intended",
         ],
         technical: [
-            { label: "frame",   value: "carbon fiber" },
+            { label: "frame",   value: "custom carbon fiber" },
             { label: "purpose", value: "ardms firmware testing" },
         ],
         related: ["ardms", "launchquad"],
@@ -343,9 +346,9 @@ const PROJECTS = [
 
     {
         id: "printer",
-        title: "3d printer",
-        tagline: "printer i keep rebuilding. runs klipper now.",
-        tags: ["3d printing", "klipper", "mechatronics"],
+        title: "custom printer",
+        tagline: "the printer that built everything",
+        tags: ["3d printing", "klipper", "thermal dynamics"],
         thumbnail: "assets/printer-v2-close.jpg",
         overview: [
             "this is my printer, which i've basically rebuilt from the ground up more than once. the current version runs klipper with a web dashboard and it's actually tuned properly — input shaping off an accelerometer, cable chains, the whole thing.",
